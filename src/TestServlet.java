@@ -26,7 +26,7 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String flo = "Florian, tu sais faire un GIT ?";
+		String flo = "Pierre, tu sais faire un GIT ?";
 		
 		
 	}
