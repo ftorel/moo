@@ -3,6 +3,9 @@ import java.io.*;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import com.sun.org.apache.xpath.internal.functions.FuncBoolean;
+
 import java.sql.*;
 
 public class DataBaseConnector {
@@ -15,36 +18,45 @@ public class DataBaseConnector {
     //  Database credentials
     static final String USER = "perrinofblpierre";
     static final String PASS = "MoodISEP0";
+    
+    public DataBaseConnector sharedInstance(){
+		return initInstance();
+	}
+	
+	private DataBaseConnector() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	private static DataBaseConnector initInstance(){
 		if ( baseConnnectorInstance == null ){
 			baseConnnectorInstance = new DataBaseConnector();
-	
-			
-			  try{
-					Class.forName("com.mysql.jdbc.Driver");
-
-					
-				    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			        Statement stmt = conn.createStatement();
-
-					  } catch (SQLException ex) {
-				            ex.printStackTrace();
-				        } catch (ClassNotFoundException e) {
-				            // TODO Auto-generated catch block
-				            e.printStackTrace();
-				        }
-			  
 		}
 		return baseConnnectorInstance;
 	}
 	
-	public DataBaseConnector sharedInstance(){
-		return initInstance();
+	public ResultSet executeSQL(String sqlString){
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+
+		    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+	        Statement stmt = conn.createStatement();
+	        ResultSet rset = stmt.executeQuery(sqlString); 
+	        
+	        stmt.close();
+	        conn.close();
+	  
+	    	return rset;
+	    	
+			} 
+		catch (SQLException ex) {
+		            ex.printStackTrace();
+		    } 
+		catch (ClassNotFoundException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		    }
+		return null;
 	}
-	
-	public DataBaseConnector() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 }
