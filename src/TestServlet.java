@@ -27,7 +27,7 @@ public class TestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String flo = "Pierre, tu sais faire un GIT ?";
-		String fl = "Pierre, tu sais faire un G?";
+		String fl = "Pierre, tu sais aire un G?";
 		
 		
 	}
