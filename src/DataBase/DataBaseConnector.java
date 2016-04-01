@@ -13,13 +13,13 @@ public class DataBaseConnector {
 	private static DataBaseConnector baseConnnectorInstance; 
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="perrinofblpierre.mysql.db";
+    static final String DB_URL="jdbc:mysql://sql7.freemysqlhosting.net/sql7113207";
 
     //  Database credentials
-    static final String USER = "perrinofblpierre";
-    static final String PASS = "MoodISEP0";
+    static final String USER = "sql7113207";
+    static final String PASS = "F4byJz1M7p";
     
-    public DataBaseConnector sharedInstance(){
+    public static DataBaseConnector sharedInstance(){
 		return initInstance();
 	}
 	
@@ -37,16 +37,20 @@ public class DataBaseConnector {
 	public ResultSet executeSQL(String sqlString){
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("1");
+			Class.forName(JDBC_DRIVER);
+
 
 		    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("2");
 	        Statement stmt = conn.createStatement();
-	        ResultSet rset = stmt.executeQuery(sqlString); 
-	        
+			System.out.println("3");
+	        stmt.executeUpdate(sqlString);
+	    
 	        stmt.close();
 	        conn.close();
 	  
-	    	return rset;
+	    	return null;
 	    	
 			} 
 		catch (SQLException ex) {
