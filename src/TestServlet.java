@@ -32,7 +32,7 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataBaseConnector.sharedInstance().executeSQL("CREATE TABLE lolilol (PersonID int);");
+		DataBaseConnector.sharedInstance().executeSQL("DROP TABLE  lolilol (PersonID int);");
 		
 PrintWriter out = response.getWriter();
 		
