@@ -1,25 +1,23 @@
 package DataBase;
-import java.io.*;
-import java.util.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-import com.sun.org.apache.xpath.internal.functions.FuncBoolean;
 
-import java.sql.*;
 
 public class DataBaseConnector {
 
 	private static DataBaseConnector baseConnnectorInstance; 
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="perrinofblpierre.mysql.db";
+	//jdbc:mysql://hostname:port/dbname
+    static final String DB_URL="jdbc:mysql://perrino.fr/nperrinofblpierre.mysql.db";
 
     //  Database credentials
     static final String USER = "perrinofblpierre";
     static final String PASS = "MoodISEP0";
     
-    public DataBaseConnector sharedInstance(){
+    public static DataBaseConnector sharedInstance(){
 		return initInstance();
 	}
 	
@@ -34,19 +32,27 @@ public class DataBaseConnector {
 		return baseConnnectorInstance;
 	}
 	
-	public ResultSet executeSQL(String sqlString){
+	public void executeSQL(String sqlString){
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(JDBC_DRIVER);
 
-		    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-	        Statement stmt = conn.createStatement();
-	        ResultSet rset = stmt.executeQuery(sqlString); 
+			Connection co = DriverManager.getConnection(DB_URL,USER,PASS);
+			
+			if (co != null) {
+                System.out.println("Connected to the database");
+            } else {
+            	System.out.println("Not connected to the database");
+            }
+			
+	        //Statement stmt = co.createStatement();
+	        //ResultSet rset = stmt.executeQuery(sqlString); 
 	        
-	        stmt.close();
-	        conn.close();
+	        //stmt.close();
+			
+			
 	  
-	    	return rset;
+	    	return;
 	    	
 			} 
 		catch (SQLException ex) {
@@ -55,8 +61,10 @@ public class DataBaseConnector {
 		catch (ClassNotFoundException e) {
 		            // TODO Auto-generated catch block
 		            e.printStackTrace();
+		    } finally {
+		    	
 		    }
-		return null;
+		return;
 	}
 
 }
