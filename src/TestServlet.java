@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataBase.DataBaseConnector;
+import ISEP.LDAPObject;
+import ISEP.LDAPaccess;
 
 /**
  * Servlet implementation class TestServlet
@@ -29,10 +32,31 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String sqlString = "CREATE TABLE florian (ID int);";
-				
-		DataBaseConnector.sharedInstance().executeSQL(sqlString);
+		//DataBaseConnector.sharedInstance().executeSQL("CREATE TABLE lolilol (PersonID int);");
 		
+		PrintWriter out = response.getWriter();
+		
+		LDAPaccess access = new LDAPaccess();
+		try {
+			LDAPObject test = access.LDAPget("ftorel", "isep2013"); // remplacez login par la variable qui contient le loin, et mdl par la variable qui contient le mot de passe
+		if (test == null)
+		{
+			System.out.println("login invalide");
+			System.exit(1);
+		}
+			System.out.println(test.toString()); 
+			System.exit(0);
+		} catch(Exception e) {
+			System.err.println(e.getMessage());
+			System.exit(1);
+		}
+		
+		String htmlCode = "<html>"
+				+ "<body>"
+				+ "FINISHHH"
+				+ "</body></html>";
+				
+		out.println(htmlCode);
 	}
 
 	/**
@@ -40,6 +64,10 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
+		
+		
 	}
 
 }
