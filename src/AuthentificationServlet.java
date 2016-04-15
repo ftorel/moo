@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import ISEP.LDAPObject;
 import ISEP.LDAPaccess;
+import Model.User;
+import Model.UserManager;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -33,9 +35,13 @@ public class AuthentificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String result = ISEPAuth("ftorel","isep201");
+		String result = ISEPAuth("pp7869","Ponpon92");
 		
 		System.out.println(result);
+		
+		String mail = UserManager.sharedInstance().currentUser.getMail();
+		
+		System.out.println(mail);
 		
 	}
 
@@ -58,23 +64,30 @@ public class AuthentificationServlet extends HttpServlet {
 	
 		LDAPaccess access = new LDAPaccess();
 		try {
-			LDAPObject test = access.LDAPget( login , password ); 
+			LDAPObject isepUser = access.LDAPget( login , password ); 
 
-		if (test == null)
+		if (isepUser == null)
 		{
-			return "login invalide";
+			return "Login Invalide";
 		}
-			return test.getType();
+		
+		    UserManager.sharedInstance().currentUser = this.warpUserModel(isepUser);
+		
+			return isepUser.getType();
 			
 		} catch(Exception e) {
 			
 			if ( e instanceof AuthenticationException ){
-				return "penis";
+				return "Login Invalide";
 			}
 			
 			System.err.println(e.getMessage());
 			return e.toString();
 		}
+	}
+	
+	private User warpUserModel (LDAPObject isepUser){
+		return new User(isepUser.getLogin(), isepUser.getPassword(), isepUser.getNom(), isepUser.getNomFamille(), isepUser.getPrenom(), isepUser.getType(), isepUser.getNumber(), isepUser.getMail());
 	}
 
 }
