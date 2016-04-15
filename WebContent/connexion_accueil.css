@@ -1,0 +1,47 @@
+
+h1
+{
+    font-weight: bold;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+    font-variant: normal;
+    /*font-size: 38pt; */
+    padding-bottom: 100px;
+    padding-top: 80px;
+}
+
+h4, body
+{
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+
+#logo_isep
+{
+    padding-top: 20px;
+}
+
+#logo_deconnexion
+{
+    padding-top: 25px;
+}
+
+p
+{
+    padding-top: 10px;
+    font-size: 15pt;
+}
+
+
+/* page connexion */ 
+
+#login 
+{
+    display: block;    
+}
+
+#submitBtn
+{
+    text-align: center;
+}
+
+

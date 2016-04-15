@@ -33,9 +33,16 @@ public class AuthentificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String result = ISEPAuth("ftorel","isep201");
+		String login = request.getParameter("log");
+		String password = request.getParameter("pass");
+		
+		System.out.println( "login : " + login + " password : " + password );
+		
+		String result = ISEPAuth( login , password );
 		
 		System.out.println(result);
+		
+		//TODO finir la réponse du ajax
 		
 	}
 
@@ -44,6 +51,9 @@ public class AuthentificationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		doGet(request,response);
+		
 	}
 	
 	
