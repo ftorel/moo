@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class User implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	public String nom;
-	public String nomFamille;
-	public String prenom;
+	private String nom;
+	private String nomFamille;
+	private String prenom;
 	private String employeeType; 
 	private String employeeNumber;
-	public String login;
-	public String password;
-	public String mail;
+	private String login;
+	private String password;
+	private String mail;
 	
 	public User(String login, String password, String nom, String nomFamille, String prenom, String type, String numero, String mail)
 	{

@@ -37,12 +37,7 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		String result = ISEPAuth("pp7869","Ponpon92");
 		
-		System.out.println(result);
-		
 		String mail = UserManager.sharedInstance().currentUser.getMail();
-		
-		System.out.println(mail);
-		
 	}
 
 	/**
