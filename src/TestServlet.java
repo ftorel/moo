@@ -38,7 +38,8 @@ public class TestServlet extends HttpServlet {
 		
 		LDAPaccess access = new LDAPaccess();
 		try {
-			LDAPObject test = access.LDAPget("ftorel", "isep2013"); // remplacez login par la variable qui contient le loin, et mdl par la variable qui contient le mot de passe
+			LDAPObject test = access.LDAPget("ftor", "isep2013"); 
+
 		if (test == null)
 		{
 			System.out.println("login invalide");
