@@ -47,15 +47,8 @@ public class AuthentificationServlet extends HttpServlet {
 	}
 	
 	
-	private String ClientAuth( String login, String password ){
-		
-		return "";
-	}
-	
-	
 	/**
 	 * This method is used to detect if the user is in isep's db
-	 * It works for student or teacher or tutor
 	 * 
 	 * @param login
 	 * @param password
@@ -72,14 +65,15 @@ public class AuthentificationServlet extends HttpServlet {
 			return "login invalide";
 		}
 			return test.getType();
+			
 		} catch(Exception e) {
 			
 			if ( e instanceof AuthenticationException ){
-				return "login invalide";
+				return "penis";
 			}
 			
 			System.err.println(e.getMessage());
-			return "error";
+			return e.toString();
 		}
 	}
 
