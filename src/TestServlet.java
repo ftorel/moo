@@ -32,11 +32,11 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//DataBaseConnector.sharedInstance().executeSQL("CREATE TABLE lolilol (PersonID int);");
+		DataBaseConnector.sharedInstance().executeSQL("CREATE TABLE lolilol (PersonID int);");
 		
 		PrintWriter out = response.getWriter();
 		
-		LDAPaccess access = new LDAPaccess();
+		/*LDAPaccess access = new LDAPaccess();
 		try {
 			LDAPObject test = access.LDAPget("ftor", "isep2013"); 
 
@@ -50,7 +50,7 @@ public class TestServlet extends HttpServlet {
 		} catch(Exception e) {
 			System.err.println(e.getMessage());
 			System.exit(1);
-		}
+		}*/
 		
 		String htmlCode = "<html>"
 				+ "<body>"
@@ -65,10 +65,6 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-		
-		
 	}
 
 }
