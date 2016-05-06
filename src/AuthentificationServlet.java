@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DataBase.DataBaseConnector;
 import ISEP.LDAPObject;
 import ISEP.LDAPaccess;
 import Model.User;
@@ -40,21 +42,36 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		System.out.println( "login : " + login + " password : " + password );
 		
-		String result = ISEPAuth( login , password );
+		LDAPObject result = ISEPAuth( login , password );
 		
-		if ( result.equals("eleve")){
-			response.sendRedirect("accueil_eleve.html");
-		} else if ( result.equals("client") ){
-			
-		} else if ( result.equals("tuteur") ){
-			
-		} else if ( result.equals("professeur") ){
-			
+		if ( result == null ){
+			response.sendRedirect("connexion.html");
+			return;
 		}
 		
-		System.out.println(result);
+		String type = result.getType(); 
 		
-		//TODO finir la réponse du ajax
+		if ( type.equals("eleve")){
+			response.sendRedirect("accueil_eleve.html");
+		} else if ( type.equals("client") ){
+			response.sendRedirect("accueil_client.html");
+		} else if ( type.equals("tuteur") ){
+			
+		} else if ( type.equals("professeur") ){
+			response.sendRedirect("accueil_prof.html");
+		} else {
+			
+		} 
+		
+		System.out.println(result);
+						
+		String sql = "INSERT INTO User VALUES ('Zara', 'Ali', 18, 'penis')";
+		
+		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+		
+		if ( resultSet == null ){
+			System.out.println("prout");
+		}
 		
 	}
 
@@ -76,29 +93,30 @@ public class AuthentificationServlet extends HttpServlet {
 	 * @param password
 	 * @return 
 	 */
-	private String ISEPAuth( String login, String password ){
+	private LDAPObject ISEPAuth( String login, String password ){
 	
 		LDAPaccess access = new LDAPaccess();
 		try {
 			LDAPObject isepUser = access.LDAPget( login , password ); 
 
 		if (isepUser == null)
-		{
-			return "Login Invalide";
+		{	
+			System.err.println("user doesn't exist");
+			return null;
 		}
-		
 		    UserManager.sharedInstance().currentUser = this.warpUserModel(isepUser);
 		
-			return isepUser.getType();
+			return isepUser;
 			
 		} catch(Exception e) {
 			
 			if ( e instanceof AuthenticationException ){
-				return "Login Invalide";
+				System.err.println(e.getMessage());
+				return null;
 			}
 			
 			System.err.println(e.getMessage());
-			return e.toString();
+			return null;
 		}
 	}
 	

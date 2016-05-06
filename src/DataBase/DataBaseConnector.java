@@ -13,7 +13,7 @@ public class DataBaseConnector {
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 
-    static final String DB_URL="jdbc:mysql://localhost:8888";
+    static final String DB_URL="jdbc:mysql://localhost:3306/DleMoo";
 
     //  Database credentials
     static final String USER = "root";
@@ -36,9 +36,11 @@ public class DataBaseConnector {
 	
 	public ResultSet executeSQL(String sqlString){
 		
+		System.out.print("start executeSQL");
+		
 		try{
 			Class.forName(JDBC_DRIVER);
-
+			
 		    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 	        Statement stmt = conn.createStatement();
