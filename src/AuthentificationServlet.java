@@ -35,13 +35,22 @@ public class AuthentificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-
 		String login = request.getParameter("log");
 		String password = request.getParameter("pass");
 		
 		System.out.println( "login : " + login + " password : " + password );
 		
 		String result = ISEPAuth( login , password );
+		
+		if ( result.equals("eleve")){
+			response.sendRedirect("accueil_eleve.html");
+		} else if ( result.equals("client") ){
+			
+		} else if ( result.equals("tuteur") ){
+			
+		} else if ( result.equals("professeur") ){
+			
+		}
 		
 		System.out.println(result);
 		

@@ -1,0 +1,137 @@
+/* ---------- page connexion ---------- */ 
+
+#login 
+{
+    display: block;    
+}
+
+#submitBtn
+{
+    text-align: center;
+}
+
+/* ---------- page accueil perso ---------- */
+
+#logo_isep 
+{ 
+    padding-top: 20px; 
+}
+
+#logo_deconnexion 
+{ 
+    padding-top: 25px; 
+}
+
+h4, body 
+{ 
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif; 
+}
+
+p
+{
+    padding-top: 10px;
+    font-size: 15pt;
+}
+
+/* responsive */
+
+@media screen and (min-width: 320px)
+{
+    h1 
+    { 
+        font-size: 22pt;
+        font-weight: bold;
+        padding-top: 25px;
+        padding-bottom: 30px;
+    }
+
+    #logo_isep
+    {
+        width: 120px;
+    }
+
+    #logo_deconnexion
+    {
+        width: 40px;
+    }
+}
+
+@media screen and (min-width: 480px)
+{
+    h1 
+    { 
+        font-size: 26pt;
+        font-weight: bold;
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+
+    #logo_isep
+    {
+        width: 130px;
+    }
+
+    #logo_deconnexion
+    {
+        width: 50px;
+    }
+}
+
+@media screen and (min-width: 780px)
+{
+    h1 
+    { 
+        font-size: 32pt;
+        font-weight: bold;
+        padding-top: 60px;
+        padding-bottom: 80px;
+    }
+
+    #logo_isep
+    {
+        width: 180px;
+    }
+
+    #logo_deconnexion
+    {
+        width: 70px;
+    }
+}
+
+@media screen and (min-width: 992px)
+{
+    h1 
+    { 
+        font-size: 36pt;
+        font-weight: bold;
+        padding-top: 80px;
+        padding-bottom: 90px;
+    }
+
+    #logo_isep
+    {
+        width: 180px;
+    }
+
+    #logo_deconnexion
+    {
+        width: 70px;
+    }
+}
+
+
+ /*
+h1
+{
+    font-weight: bold;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+    font-variant: normal;
+    /*font-size: 38pt; 
+    padding-bottom: 100px;
+    padding-top: 80px;
+}
+*/
+
+
+
+
