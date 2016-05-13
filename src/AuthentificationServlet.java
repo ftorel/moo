@@ -2,13 +2,17 @@
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.activation.MailcapCommandMap;
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sun.org.apache.xpath.internal.functions.FuncBoolean;
 
 import DataBase.DataBaseConnector;
 import ISEP.LDAPObject;
@@ -50,29 +54,60 @@ public class AuthentificationServlet extends HttpServlet {
 		}
 		
 		String type = result.getType(); 
+		String redirectPage = "";
+		
+		Integer typeInt = 0;
 		
 		if ( type.equals("eleve")){
-			response.sendRedirect("accueil_eleve.html");
+			redirectPage = "accueil_eleve.html";
+			typeInt = 0;
 		} else if ( type.equals("client") ){
 			response.sendRedirect("accueil_client.html");
+			redirectPage = "accueil_client.html";
+			typeInt = 1;
 		} else if ( type.equals("tuteur") ){
-			
+			typeInt = 2;
 		} else if ( type.equals("professeur") ){
-			response.sendRedirect("accueil_prof.html");
-		} else {
+			redirectPage = "accueil_prof.html";
+			typeInt = 3;
+		}
+		
+		if (this.existUserInDataBase(result.mail)){
+			System.out.println("User already registered");
+		}else{
+			String sqlValues = "(0,'" + result.nomFamille + "','" + result.prenom + "'," + typeInt + ",'" + result.mail + "');";
 			
-		} 
+			String sql = "INSERT INTO User (id, prenom, nom, type, mail) VALUES "+ sqlValues;
+			
+			System.out.println(sql);
+			
+			ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+			
+			if ( resultSet == null ){
+				System.out.println("The SQL has been executed");
+			}
+		}
 		
-		System.out.println(result);
-						
-		String sql = "INSERT INTO User VALUES ('Zara', 'Ali', 18, 'penis')";
+		response.sendRedirect(redirectPage);
+	}
+	
+	boolean existUserInDataBase(String userMail){
 		
+		String sql = "SELECT id FROM User WHERE mail = '" + userMail + "';";
+		System.out.println(sql);
 		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
 		
 		if ( resultSet == null ){
-			System.out.println("prout");
+			System.out.println("The SQL has been executed, the result is null");
+		}else{
+			   try {
+				   return resultSet.first();
+			   } 
+			   catch (SQLException e) {
+				   System.out.println("Sql exeption" + e);
+		    } 
 		}
-		
+		return false;
 	}
 
 	/**
