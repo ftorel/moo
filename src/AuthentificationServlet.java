@@ -52,7 +52,7 @@ public class AuthentificationServlet extends HttpServlet {
 		String type = result.getType(); 
 		
 		if ( type.equals("eleve")){
-			response.sendRedirect("accueil_eleve.html");
+			response.sendRedirect("eleve_accueil.html");
 		} else if ( type.equals("client") ){
 			response.sendRedirect("accueil_client.html");
 		} else if ( type.equals("tuteur") ){
@@ -65,7 +65,7 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		System.out.println(result);
 						
-		String sql = "INSERT INTO User VALUES ('Zara', 'Ali', 18, 'penis')";
+		String sql = "INSERT INTO User (prenom,nom,type,mail) VALUES ( 'Zara', 'Ali', 18, 'penis')";
 		
 		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
 		

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page personnelle</title>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/connexion_accueil.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6">
+        <!-- <img id="logo_isep" src="Isep-Logo.png" width="160"> -->
+        <img id="logo_isep" src="drawable/Isep-Logo.png">
+      </div>
+
+      <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3 ">
+        <img id="logo_deconnexion" src="drawable/deconnexion.svg">
+      </div>
+
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-12">
+  		  <h1>Espace personnel Élève</h1>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-2 col-md-offset-2 col-sm-3 col-xs-12">  
+        <img id="logo_sujet" src="drawable/sujet.svg" height="80" width="80">
+        <h4>Sujet</h4>
+      </div>
+
+      <div class="col-md-2 col-sm-3 col-xs-12">
+        <img id="logo_equipe" src="drawable/equipe.svg" height="80" width="80">
+        <h4>Equipe</h4>
+      </div>
+      
+      <div class="col-md-2  col-sm-3 col-xs-12">
+        <img id="logo_rdv" src="drawable/rdv.svg" height="80" width="80">
+        <h4>RDV</h4>
+      </div>
+
+      <div class="col-md-2  col-sm-3 col-xs-12">
+        <img id="logo_docs" src="drawable/docs.svg" height="80" width="80">
+        <h4>Docs</h4>
+      </div>
+    </div>
+
+  </div> 
+
+ <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+  <script>
+    $(function() 
+    {
+      $('#logo_sujet').mousedown(function()
+	      {
+	        $(this).fadeTo("fast", 0.55);
+	      });
+	      $('#logo_sujet').mouseup(function()
+	      {
+	        $(this).fadeTo("fast", 1);
+	        window.open ('eleve_sujet.html','_self',false)
+	      });
+      
+      $('#logo_deconnexion').mousedown(function()
+   		  {
+   	        $(this).fadeTo("fast", 0.55);
+   	      });
+   	      $('#logo_deconnexion').mouseup(function()
+   	      {
+   	        $(this).fadeTo("fast", 1);
+   	     	window.open ('connexion.html','_self',false)
+   	      });
+
+
+      $('#logo_equipe').mousedown(function()
+	      {
+	        $(this).fadeTo("fast", 0.55);
+	      });
+	      $('#logo_equipe').mouseup(function()
+	      {
+	        $(this).fadeTo("fast", 1);
+	      });
+
+
+      $('#logo_rdv').mousedown(function()
+	      {
+	        $(this).fadeTo("fast", 0.55);
+	      });
+	      $('#logo_rdv').mouseup(function()
+	      {
+	        $(this).fadeTo("fast", 1);
+	      });
+	      
+
+      $('#logo_docs').mousedown(function()
+	      {
+	        $(this).fadeTo("fast", 0.55);
+	      });
+	      $('#logo_docs').mouseup(function()
+	      {
+	        $(this).fadeTo("fast", 1);
+	      });
+
+    });
+  </script>
+</body>
+
+
+</html>

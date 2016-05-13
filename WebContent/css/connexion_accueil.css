@@ -1,3 +1,34 @@
+/* ---------- all pages ---------- */ 
+
+h4, body 
+{ 
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif; 
+}
+
+p
+{
+    padding-top: 10px;
+    font-size: 15pt;
+}
+img
+{
+    border: none;
+    border-style: none;
+}
+
+a 
+{
+    outline: none;
+}
+
+a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
+{
+  outline: 0;                                   
+  outline: 0 !important;
+  outline-style:none;
+}
+
+
 /* ---------- page connexion ---------- */ 
 
 #login 
@@ -22,16 +53,6 @@
     padding-top: 25px; 
 }
 
-h4, body 
-{ 
-    font-family: "Arial Rounded MT Bold", Arial, sans-serif; 
-}
-
-p
-{
-    padding-top: 10px;
-    font-size: 15pt;
-}
 
 /* responsive */
 
@@ -45,14 +66,37 @@ p
         padding-bottom: 30px;
     }
 
+    #titre_pages
+    {
+        font-size: 22pt;
+        font-weight: bold;
+        padding-top: 15px;
+        padding-bottom: 20px;
+    }
+
     #logo_isep
     {
         width: 120px;
     }
 
+    #logo_isep_pages
+    {
+        width: 80px;
+    }
+
     #logo_deconnexion
     {
         width: 40px;
+    }
+
+    #logo_deconnexion_pages
+    {
+        width: 30px;
+    }
+
+    #menu_lateral
+    {
+        padding-top: 0px;
     }
 }
 
@@ -62,8 +106,16 @@ p
     { 
         font-size: 26pt;
         font-weight: bold;
-        padding-top: 20px;
+        padding-top: 15px;
         padding-bottom: 40px;
+    }
+
+    #titre_pages
+    {
+        font-size: 26pt;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 30px;
     }
 
     #logo_isep
@@ -75,6 +127,11 @@ p
     {
         width: 50px;
     }
+
+    #menu_lateral
+    {
+        padding-top: 5px;
+    }
 }
 
 @media screen and (min-width: 780px)
@@ -83,8 +140,16 @@ p
     { 
         font-size: 32pt;
         font-weight: bold;
-        padding-top: 60px;
+        padding-top: 50px;
         padding-bottom: 80px;
+    }
+
+    #titre_pages
+    {
+        font-size: 32pt;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 30px;
     }
 
     #logo_isep
@@ -95,6 +160,11 @@ p
     #logo_deconnexion
     {
         width: 70px;
+    }
+
+    #menu_lateral
+    {
+        padding-top: 10px;
     }
 }
 
@@ -104,8 +174,16 @@ p
     { 
         font-size: 36pt;
         font-weight: bold;
-        padding-top: 80px;
+        padding-top: 70px;
         padding-bottom: 90px;
+    }
+
+    #titre_pages
+    {
+        font-size: 36pt;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 0px;
     }
 
     #logo_isep
@@ -117,6 +195,42 @@ p
     {
         width: 70px;
     }
+
+    #menu_lateral
+    {
+        padding-top: 50px;
+    }
+
+    /* #logo_session
+    {
+        -webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+        transition: width 2s, height 2s, transform 2s;
+    }
+
+    #logo_session:hover
+    {
+        width: 100;
+        height: 100;
+        -webkit-transform: rotate(360deg); 
+        transform: rotate(360deg);
+    } */
+  
+  /* ---------- autres pages ---------- */  
+
+    #logo_isep_pages
+    {
+        width: 120px;
+        padding-top: 20px; 
+    }
+    
+    #logo_deconnexion_pages
+    {
+        width: 50px;
+        padding-top: 25px; 
+
+    }
+
+
 }
 
 
