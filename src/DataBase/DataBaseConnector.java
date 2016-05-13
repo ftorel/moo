@@ -13,11 +13,11 @@ public class DataBaseConnector {
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 
-    static final String DB_URL="jdbc:mysql://localhost:3306/DleMoo";
+    static final String DB_URL="jdbc:mysql://0.0.0.0:8889/DleMoo";
 
     //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "root";
+    static final String USER = "bg";
+    static final String PASS = "bg";
      
     public static DataBaseConnector sharedInstance(){
 		return initInstance();
@@ -36,12 +36,15 @@ public class DataBaseConnector {
 	
 	public ResultSet executeSQL(String sqlString){
 		
-		System.out.print("start executeSQL");
+		System.out.print("start executeSQL" + "\n");
 		
 		try{
-			Class.forName(JDBC_DRIVER);
 			
-		    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		    Connection conn = getDBConnection();
+		    
+		    if ( conn == null ){
+		    	return null;
+		    }
 
 	        Statement stmt = conn.createStatement();
 
@@ -58,13 +61,48 @@ public class DataBaseConnector {
 	    	
 			} 
 		catch (SQLException ex) {
-		            ex.printStackTrace();
-		    } 
-		catch (ClassNotFoundException e) {
-		            // TODO Auto-generated catch block
-		            e.printStackTrace();
+			System.out.println(" error :  " + ex.getMessage() + "\n");
 		    }
+		
 		return null;
 	}
+	
+	private static Connection getDBConnection() {
+
+		Connection dbConnection = null;
+
+		try {
+			
+			System.out.print("init driver");
+
+			Class.forName(JDBC_DRIVER);
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println( " error :  " + e.getMessage() + "\n" );
+
+		}
+
+		try {
+			
+			System.out.print("start db connection");
+			System.out.print("url = " + DB_URL + "\n");
+			System.out.print("user = " + USER + "\n");
+			System.out.print("pass = " + PASS + "\n");
+
+			dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+			return dbConnection;
+
+		} catch (SQLException e) {
+
+			System.out.println( " error :  " + e.getMessage() + "\n" );
+
+		}
+
+		return dbConnection;
+
+	}
+
+	
 
 }
