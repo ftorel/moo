@@ -7,15 +7,19 @@ import java.sql.SQLException;
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
+
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 import DataBase.DataBaseConnector;
+import DataBase.UserTable;
 import ISEP.LDAPObject;
 import ISEP.LDAPaccess;
 import Model.User;
-import Model.UserManager;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -68,46 +72,34 @@ public class AuthentificationServlet extends HttpServlet {
 			typeInt = 3;
 		}
 		
-		if (this.existUserInDataBase(result.mail)){
+		Integer User_ID = UserTable.UserIdWithMail(result.mail);
+		
+		if (User_ID >= 0){
 			System.out.println("User already registered");
 		}else{
-			String sqlValues = "(0,'" + result.nomFamille + "','" + result.prenom + "'," + typeInt + ",'" + result.mail + "');";
 			
-			String sql = "INSERT INTO User (id, prenom, nom, type, mail) VALUES "+ sqlValues;
-			
-			System.out.println(sql);
-			
-			ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
-			
-			if ( resultSet == null ){
-				System.out.println("The SQL has been executed");
-			}
+			UserTable.addUser(result.prenom, result.nomFamille, result.mail	, typeInt);
+			User_ID = UserTable.UserIdWithMail(result.mail);
 		}
 		
-		System.out.println("Prepare redirection to " + redirectPage);
+		if (User_ID != -1){
+			System.out.println("Prepare redirection to " + redirectPage);
+			
+			String sessionId = request.getSession().getId();
+			
+			System.out.println("Session ID " + sessionId);
+			System.out.println("Keeping userId in cookies " + redirectPage);
 		
-		response.sendRedirect(redirectPage);
+			Cookie newCookie = new Cookie(sessionId, User_ID.toString());
+			response.addCookie(newCookie);
+			
+			response.sendRedirect(redirectPage);
+		}else{
+			System.out.println("An error occured here");
+		}
 	}
 	
-	boolean existUserInDataBase(String userMail){
-
-		
-		String sql = "SELECT id FROM User WHERE mail = '" + userMail + "';";
-		System.out.println(sql);
-		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
-		
-		if ( resultSet == null ){
-			System.out.println("The SQL has been executed, the result is null");
-		}else{
-			   try {
-				   return resultSet.first();
-			   } 
-			   catch (SQLException e) {
-				   System.out.println("Sql exeption" + e);
-		    } 
-		}
-		return false;
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -136,8 +128,7 @@ public class AuthentificationServlet extends HttpServlet {
 			System.err.println("user doesn't exist");
 			return null;
 		}
-		    UserManager.sharedInstance().currentUser = this.warpUserModel(isepUser);
-		
+		   
 			return isepUser;
 			
 		} catch(Exception e) {

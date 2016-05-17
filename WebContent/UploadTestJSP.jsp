@@ -11,6 +11,9 @@
     <center>
         <form method="post" action="TestServlet" enctype="multipart/form-data">
             Select file to upload :  (max 20Mb)
+            <br/><br/>
+            <input type="text" name="fileName" placeholder="File name" />
+            <br/>
             <input type="file" name="uploadFile" />
             <br/><br/>
             <input type="submit" value="Upload" />
