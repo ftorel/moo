@@ -41,7 +41,7 @@ public class AuthentificationServlet extends HttpServlet {
 		String login = request.getParameter("log");
 		String password = request.getParameter("pass");
 		
-		System.out.println( "login : " + login + " password : " + password );
+		
 		
 		LDAPObject result = ISEPAuth( login , password );
 		
@@ -56,7 +56,7 @@ public class AuthentificationServlet extends HttpServlet {
 		Integer typeInt = 0;
 		
 		if ( type.equals("eleve")){
-			redirectPage = "eleve_accueil.html.html";
+			redirectPage = "eleve_accueil.html";
 			typeInt = 0;
 		} else if ( type.equals("client") ){
 			redirectPage = "accueil_client.html";
@@ -83,6 +83,8 @@ public class AuthentificationServlet extends HttpServlet {
 				System.out.println("The SQL has been executed");
 			}
 		}
+		
+		System.out.println("Prepare redirection to " + redirectPage);
 		
 		response.sendRedirect(redirectPage);
 	}
@@ -114,9 +116,7 @@ public class AuthentificationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		doGet(request,response);
-		
 	}
-	
 	
 	/**
 	 * This method is used to detect if the user is in isep's db
