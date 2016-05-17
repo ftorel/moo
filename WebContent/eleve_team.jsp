@@ -1,14 +1,17 @@
+<%@ page language="java" import="java.sql.*" import="java.util.*"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="Model.Team" %>
+<%@ page import="Model.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Mon Équipe</title>
+  <title>Mon Equipe</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <img id="logo_isep" src="Isep-Logo.png" />
-  <img id="logo_deconnexion" src="deconnexion.svg" />
+  <img id="logo_isep" src="drawable/Isep-Logo.png" />
+  <img id="logo_deconnexion" src="drawable/deconnexion.svg" />
   <style type="text/css">
   body {
     font-family: "Arial Rounded MT Bold", Arial, sans-serif;
@@ -51,7 +54,7 @@
     <div class="col-sm-3" >
     </div>
     <div class="col-sm-6">
-      <h1 style="text-align: center;">Mon Équipe</h1>      
+      <h1 style="text-align: center;">Mon Equipe</h1>      
     </div>
     <div class="col-sm-3">
     </div>
@@ -63,7 +66,7 @@
         <li class="list-group-item list-group-item-success">
           <p class="glyphicon glyphicon-name"></p><img src="drawable/sujet.svg" height="60" width="60"> MON SUJET
         </li>
-        <li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="60" width="60"> <b>MON ÉQUIPE</b></li>
+        <li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="60" width="60"> <b>MON EQUIPE</b></li>
         <li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="60" width="60"> RDV</li>
         <li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="60" width="60"> DOCUMENTS</li>
       </ul>
@@ -71,40 +74,39 @@
    
 <div class="col-sm-9">
       <div class="panel panel-default">
-        <div class="panel-heading"><h3>CHOIX ÉQUIPE</h3></div>
+        <div class="panel-heading"><h3>CHOIX EQUIPE</h3></div>
         <div class="panel-body">
         
 <div id="accordion1" class="panel-group">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">Groupe 1</a>
-      </h4>
-    </div>
-    <div class="panel-collapse in" id="collapseOne">
-      <div class="panel-body">Listing des membres du groupe 1.</div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">Groupe 2</a>
-      </h4>
-    </div>
-    <div class="panel-collapse collapse" id="collapseTwo">
-      <div class="panel-body">Listing des membres du groupe 2.</div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">Groupe 3</a>
-      </h4>
-    </div>
-    <div class="panel-collapse collapse" id="collapseThree">
-      <div class="panel-body">Listing des membres du groupe 3.</div>
-    </div>
-  </div>
+
+	<%List data =(List)request.getAttribute("data");
+    for(int i = 0; i < data.size(); i+=1) { %>
+    
+    <%Team team = ((Team)data.get(i)); %>
+
+	  <div class="panel panel-primary">
+	    <div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><%= team.getName() %></a>
+	      </h4>
+	    </div>
+	    <div class="panel-collapse in" id="collapseOne">
+	    
+	    <%List<User> members = team.getMembers(); %>
+	    
+	    <%for(int j = 0; j < members.size() ; j+=1) { %>
+	    
+	    	<%User membre = (User) members.get(j); %>
+	    	
+	      	<p class="panel-body"><%= membre.getNom() %></p>
+	      
+	      <% } %>
+	      
+	    </div>
+	  </div>
+  
+  <% } %>
+    
 </div>
 
       </div>
@@ -114,9 +116,19 @@
   <form role="form">
     <div class="form-group">
       <select class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
+      
+      <%List d =(List)request.getAttribute("data");
+       
+    	for(int i = 0; i < d.size(); i+=1) { %>
+    
+    	<%Team team = ((Team)d.get(i)); %>
+    	
+    	<% System.out.println( "aaaa = " +team.getName() ); %>
+    	
+    	<option><%team.getName();%></option>
+    
+     <% } %> 
+      
       </select>
       <br>
     <button type="submit" class="btn btn-default">Valider</button>
