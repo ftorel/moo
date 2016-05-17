@@ -11,10 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import DataBase.FileTable;
  
 
 /**
@@ -62,6 +65,8 @@ public class TestServlet extends HttpServlet {
 	            return;
 	        }
 	 
+		  	String filename = request.getParameter("fileName");
+		  
 	        // configures upload settings
 	        DiskFileItemFactory factory = new DiskFileItemFactory();
 	        // sets memory threshold - beyond which files are stored in disk
@@ -87,9 +92,6 @@ public class TestServlet extends HttpServlet {
 	        if (!uploadDir.exists()) {
 	            uploadDir.mkdir();
 	        }
-	 
-	     
-	        
 	        try {
 	            // parses the request's content to extract file data
 	            //@SuppressWarnings("unchecked")
@@ -108,6 +110,10 @@ public class TestServlet extends HttpServlet {
 	 
 	                        // saves the file on disk
 	                        item.write(storeFile);
+	                        
+	                        FileTable.addFile(filename, filePath, "7");
+	                        
+	                        
 	                        request.setAttribute("message",
 	                            "Upload has been done successfully!");
 	                    }
@@ -122,3 +128,5 @@ public class TestServlet extends HttpServlet {
 	                request, response);
 	    }
 }
+
+
