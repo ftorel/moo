@@ -10,6 +10,7 @@ tmp/
 local.properties
 .classpath
 .loadpath
+build/
 
 # External tool builders
 .externalToolBuilders/
