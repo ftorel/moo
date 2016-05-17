@@ -56,7 +56,7 @@ public class AuthentificationServlet extends HttpServlet {
 		Integer typeInt = 0;
 		
 		if ( type.equals("eleve")){
-			redirectPage = "eleve_accueil.html.html";
+			redirectPage = "eleve_accueil.html";
 			typeInt = 0;
 		} else if ( type.equals("client") ){
 			redirectPage = "accueil_client.html";
