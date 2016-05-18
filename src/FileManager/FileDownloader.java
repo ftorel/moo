@@ -1,4 +1,4 @@
-
+package FileManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TestDownloadFile
+ * Servlet implementation class FileDownloader
  */
-@WebServlet("/TestDownloadFile")
-public class TestDownloadFile extends HttpServlet {
+@WebServlet("/FileDownloader")
+public class FileDownloader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestDownloadFile() {
+    public FileDownloader() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +32,16 @@ public class TestDownloadFile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 String filePath = "/Users/Ponpon/Documents/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Moo/upload/jegarde.jpg";
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		 String filePath = request.getParameter("docUrl");;
 	        File downloadFile = new File(filePath);
 	        FileInputStream inStream = new FileInputStream(downloadFile);
 	         
@@ -72,14 +81,6 @@ public class TestDownloadFile extends HttpServlet {
 	         
 	        inStream.close();
 	        outStream.close();    
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -38,6 +38,19 @@ static public void addFile(String name , String url, String userId){
 				
 				/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
 	}
+
+static public void removeFile(String docId){
+	
+	String sql = "DELETE " + 
+			"FROM " + 
+			FileTable.tableName + 
+			" WHERE " + 
+			FileTable.id + 
+			" = '" + docId + "';";
+			System.out.println(sql);
+			
+			/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
+}
 	
 static public ArrayList<Model.Document> FilesForUserId(String userId){
 	
@@ -76,5 +89,6 @@ static public ArrayList<Model.Document> FilesForUserId(String userId){
 	
 	return null;
 }
+
 
 }

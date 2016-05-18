@@ -1,45 +1,42 @@
-
-
+package FileManager;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import DataBase.FileTable;
- 
 
 /**
- * Servlet implementation class TestServlet
+ * Servlet implementation class UploadServlet
  */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/UploadServlet")
+public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 	
 	// location to store file uploaded
     private static final String UPLOAD_DIRECTORY = "upload";
  
     // upload settings
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
-    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 20; // 40MB
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 20; // 20MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestServlet() {
+    public UploadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -103,8 +100,9 @@ public class TestServlet extends HttpServlet {
 	                    // processes only fields that are not form fields
 	           	
 	                    if (!item.isFormField()) {
-	                        String fileName = new File(item.getName()).getName();
+	                        String fileName = new File(item.getName()).getName().replaceAll("[^a-zA-Z0-9.-]", "");
 	                        String filePath = uploadPath + File.separator + fileName;
+	                        filePath = filePath.replace(" ","_");
 	                        System.out.println("The upload directory is : " + filePath);
 	                        File storeFile = new File(filePath);
 	 
@@ -112,21 +110,17 @@ public class TestServlet extends HttpServlet {
 	                        item.write(storeFile);
 	                        
 	                        FileTable.addFile(filename, filePath, "7");
-	                        
-	                        
-	                        request.setAttribute("message",
-	                            "Upload has been done successfully!");
 	                    }
 	                }
 	            }
 	        } catch (Exception ex) {
-	            request.setAttribute("message",
-	                    "There was an error: " + ex.getMessage());
+	        	
 	        }
-	        // redirects client to message page
-	        getServletContext().getRequestDispatcher("/message.jsp").forward(
-	                request, response);
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("DocumentServlet");
+	    	
+	    	if (dispatcher != null){
+	    		dispatcher.forward(request, response);
+	    	}
 	    }
+
 }
-
-

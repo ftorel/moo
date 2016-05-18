@@ -48,7 +48,7 @@ public class DataBaseConnector {
 
 	        Statement stmt = conn.createStatement();
 
-	        if(sqlString.contains("CREATE") || sqlString.contains("INSERT") || sqlString.contains("UPDATE") || sqlString.contains("DROP")){
+	        if(sqlString.contains("DELETE") || sqlString.contains("CREATE") || sqlString.contains("INSERT") || sqlString.contains("UPDATE") || sqlString.contains("DROP")){
 	        	  stmt.executeUpdate(sqlString);
 	        }else{
 	        	return stmt.executeQuery(sqlString);
