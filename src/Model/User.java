@@ -59,6 +59,7 @@ public class User implements Serializable
 	public String getPassword() {
 		return password;
 	}
+	
 	public String toString()
 	{
 		return "login = " + login + " nom = " + nom + " type = " + employeeType + " id = " + employeeNumber;

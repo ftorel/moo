@@ -125,7 +125,7 @@
     	
     	<% System.out.println( "aaaa = " +team.getName() ); %>
     	
-    	<option><%team.getName();%></option>
+    	<option><%=team.getName()%></option>
     
      <% } %> 
       
