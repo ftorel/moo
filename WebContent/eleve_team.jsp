@@ -81,7 +81,7 @@
 
 	<%List data =(List)request.getAttribute("data");
     for(int i = 0; i < data.size(); i+=1) { %>
-    
+ 
     <%Team team = ((Team)data.get(i)); %>
 
 	  <div class="panel panel-primary">
@@ -122,9 +122,6 @@
     	for(int i = 0; i < d.size(); i+=1) { %>
     
     	<%Team team = ((Team)d.get(i)); %>
-    	
-    	<% System.out.println( "aaaa = " +team.getName() ); %>
-    	
     	<option><%=team.getName()%></option>
     
      <% } %> 
