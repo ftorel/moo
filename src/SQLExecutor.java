@@ -52,9 +52,9 @@ public class SQLExecutor extends HttpServlet {
 					"FOREIGN KEY (U_ID) REFERENCES User(U_ID));";
 					*/
 		
-		ArrayList<Document> docList =  FileTable.FilesForUserId("7");
+		//ArrayList<Document> docList =  FileTable.FilesForUserId("7");
 		
-		System.out.println("The sql is " + docList);
+		//System.out.println("The sql is " + docList);
 	
 		/*ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
 		

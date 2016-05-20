@@ -40,7 +40,6 @@ public class FileDelete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		    String doc_id = request.getParameter("docId");
 		    String doc_url = request.getParameter("docUrl");
 		
 			try{
@@ -48,7 +47,7 @@ public class FileDelete extends HttpServlet {
         	
 				if(file.delete()){
 					System.out.println(file.getName() + " is deleted!");
-					FileTable.removeFile(doc_id);
+					FileTable.removeFile(doc_url);
 					
 					RequestDispatcher dispatcher = request.getRequestDispatcher("DocumentServlet");
 					dispatcher.forward(request,response);

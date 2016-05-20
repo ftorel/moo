@@ -60,8 +60,6 @@ static public  ArrayList<Model.Team> getAllTeams(Integer sessionId){
 					System.out.println("The SQL has been executed, the result is null");
 				}else{
 					try {
-
-						//ArrayList<Model.Document> documentList = new ArrayList<Model.Document>();
 						
 						while (resultSet.next()){
 						
@@ -72,6 +70,36 @@ static public  ArrayList<Model.Team> getAllTeams(Integer sessionId){
 							
 							return tempTeam;
 						}
+					}
+					catch (Exception e){
+						System.out.println("Exeption during query :" + e);
+					}
+				}
+				return null;
+	}
+	
+	static public ArrayList<String> getMembersMail(Integer teamId){
+		
+		String sql = "Select " + ParticipationTable.userMail  + 
+				"FROM " + 
+				ParticipationTable.tableName + 
+				" WHERE " + 
+				ParticipationTable.teamId + 
+				" = '" + teamId + "';";
+				
+				ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+				if ( resultSet == null ){
+					System.out.println("The SQL has been executed, the result is null");
+				}else{
+					try {
+						
+						ArrayList<String> teamMembers = new ArrayList<String>();
+						while (resultSet.next()){
+					
+							String userMail = (String) resultSet.getObject(ParticipationTable.userMail);
+							teamMembers.add(userMail);
+						}
+						return teamMembers;
 					}
 					catch (Exception e){
 						System.out.println("Exeption during query :" + e);
