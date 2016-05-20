@@ -72,17 +72,17 @@ public class AuthentificationServlet extends HttpServlet {
 			typeInt = 3;
 		}
 		
-		Integer User_ID = UserTable.UserIdWithMail(result.mail);
+		String userMail = UserTable.UserExistWithMail(result.mail);
 		
-		if (User_ID >= 0){
+		if (!userMail.isEmpty()){
 			System.out.println("User already registered");
 		}else{
 			
 			UserTable.addUser(result.prenom, result.nomFamille, result.mail	, typeInt);
-			User_ID = UserTable.UserIdWithMail(result.mail);
+			userMail = UserTable.UserExistWithMail(result.mail);
 		}
 		
-		if (User_ID != -1){
+		if (!userMail.isEmpty()){
 			System.out.println("Prepare redirection to " + redirectPage);
 			
 			String sessionId = request.getSession().getId();
@@ -90,7 +90,7 @@ public class AuthentificationServlet extends HttpServlet {
 			System.out.println("Session ID " + sessionId);
 			System.out.println("Keeping userId in cookies " + redirectPage);
 		
-			Cookie newCookie = new Cookie(sessionId, User_ID.toString());
+			Cookie newCookie = new Cookie(sessionId,userMail);
 			response.addCookie(newCookie);
 			
 			response.sendRedirect(redirectPage);

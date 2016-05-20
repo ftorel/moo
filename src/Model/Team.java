@@ -1,15 +1,14 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Team {
 	
+	private Integer id;
 	private String name;
-	private ArrayList<User> members;
+	//private ArrayList<User> members;
 	
-	public Team( String name){
+	public Team(Integer id ,String name){
 		
-		members = new ArrayList<User>();
+	/*	members = new ArrayList<User>();
 			
 		User userFlo = new User();
 		userFlo.setNom("Florian");
@@ -17,27 +16,35 @@ public class Team {
 		
 		User userPierre = new User();
 		userPierre.setNom("Perrin");
-		members.add( userPierre);
+		members.add( userPierre);*/
 		
 		this.name = name;
-		
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	/*public void setName(String name) {
 		this.name = name;
+	}*/
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public ArrayList<User> getMembers() {
+	/*public Integer setId(Integer is) {
+		this.name = name;
+	}*/
+
+	/*public ArrayList<User> getMembers() {
 		return members;
 	}
 
 	public void setMembers(ArrayList<User> members) {
 		this.members = members;
-	}
+	}*/
 
 
 }

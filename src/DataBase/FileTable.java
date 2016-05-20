@@ -1,11 +1,8 @@
 package DataBase;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-import com.sun.xml.internal.txw2.Document;
 
 //import java.sql.ResultSet;
 

@@ -6,27 +6,25 @@ import java.sql.SQLException;
 public class UserTable {
 
 	static final public String tableName = "User";
-	
-	static final public String id = "U_ID";
-	static final public String prenom = "Prenom";
-	static final public String nom = "Nom";
-	static final public String mail = "Mail";
-	static final public String type = "Type";
+	static final public String prenom = "firstname";
+	static final public String nom = "lastname";
+	static final public String mail = "email";
+	static final public String type = "type";
 	
 	static public void addUser(String prenom , String nom, String mail, Integer type ){
 		
-		String sqlValues = "(0,'" + 
+		String sqlValues = "('" + 
 				nom + "','" 
 				+ prenom+ "'," 
 				+ type + ",'" + 
 				mail + "');";
 				
 				String sql = "INSERT INTO " +
-				UserTable.tableName +" (" +
-				UserTable.id + "," + 
+				UserTable.tableName +" ("+ 
 				UserTable.prenom + "," + 
 				UserTable.nom + "," + 
-				UserTable.type +
+				UserTable.type + "," + 
+				UserTable.mail +
 				") VALUES " + sqlValues;
 				
 				System.out.println(sql);
@@ -34,10 +32,10 @@ public class UserTable {
 				/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
 	}
 	
-	static public Integer UserIdWithMail(String userMail){
+	static public String UserExistWithMail(String userMail){
 		
 		String sql = "SELECT " +
-		UserTable.id + 
+		UserTable.mail + 
 		" FROM " + 
 		UserTable.tableName + 
 		" WHERE " + 
@@ -52,10 +50,10 @@ public class UserTable {
 			try {
 				if(resultSet.next()){
 					System.out.println("The result of the query is :" + resultSet.getObject(1));
-					return resultSet.getInt(1);
+					return resultSet.getString(1);
 					}else{
 						System.out.println("Any user with this mail.");
-						return -1;
+						return "";
 					}
 				
 			} catch (SQLException e) {
@@ -63,8 +61,8 @@ public class UserTable {
 				System.out.println("An error occured !");
 				e.printStackTrace();
 			}
-			return -1;
+			return "";
 		} 
-		return -1;
+		return "";
 	}
 }
