@@ -41,7 +41,7 @@ public class TeamServelt extends HttpServlet {
 		
 		ArrayList<Team> datalist = new ArrayList<Team>();
 		
-		String sql = "SELECT name FROM Team ;";
+		String sql = "SELECT * FROM `User`";
 		System.out.println(sql);
 		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
 		
@@ -51,8 +51,8 @@ public class TeamServelt extends HttpServlet {
 			   try {
 				   while (resultSet.next()) {
 			            String teamName = resultSet.getString(TEAM_NAME);
-			            Team team = new Team(teamName);
-			            datalist.add( team );
+			            //Team team = new Team(teamName);
+			            //datalist.add( team );
 			        }
 			   } 
 			   catch (SQLException e) {

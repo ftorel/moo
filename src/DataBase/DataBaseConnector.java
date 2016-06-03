@@ -13,11 +13,11 @@ public class DataBaseConnector {
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 
-    static final String DB_URL="jdbc:mysql://0.0.0.0:8889/DleMoo";
+    static final String DB_URL="jdbc:mysql://127.8.251.130:3306/dlemooDB";
 
     //  Database credentials
-    static final String USER = "bg";
-    static final String PASS = "bg";
+    static final String USER = "adminylXZZ1t";
+    static final String PASS = "8KqC_tuC1qzx";
      
     public static DataBaseConnector sharedInstance(){
 		return initInstance();

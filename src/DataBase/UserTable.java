@@ -32,6 +32,25 @@ public class UserTable {
 				/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
 	}
 	
+	static public void getAllUser(){
+		
+		String sql = "SELECT " +
+				"*" + 
+				" FROM " + 
+				UserTable.tableName + 
+				 "';";
+		
+		System.out.println(sql);
+		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+		
+		if ( resultSet  == null ){
+			
+		} else {
+			
+		}
+		
+	}
+	
 	static public String UserExistWithMail(String userMail){
 		
 		String sql = "SELECT " +
