@@ -35,7 +35,7 @@ public class DocumentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// TODO Change here for the session ID loader
-		ArrayList<Document> datalist = FileTable.FilesForUserId("7"); 
+		ArrayList<Document> datalist = FileTable.FilesForUserId();
 		
 		request.setAttribute("data", datalist);
 

@@ -109,7 +109,7 @@ public class UploadServlet extends HttpServlet {
 	                        // saves the file on disk
 	                        item.write(storeFile);
 	                        
-	                        FileTable.addFile(filename, filePath, "7");
+	                        FileTable.addFile(fileName, filePath, "7");
 	                    }
 	                }
 	            }

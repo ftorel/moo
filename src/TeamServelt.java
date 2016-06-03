@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataBase.DataBaseConnector;
+import DataBase.TeamTable;
 import Model.Team;
 
 /**
@@ -50,7 +51,8 @@ public class TeamServelt extends HttpServlet {
 		}else{
 			   try {
 				   while (resultSet.next()) {
-			            String teamName = resultSet.getString(TEAM_NAME);
+					   
+					   String teamName = resultSet.getString(TEAM_NAME);
 			            //Team team = new Team(teamName);
 			            //datalist.add( team );
 			        }

@@ -13,7 +13,7 @@ public class DataBaseConnector {
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 
-    static final String DB_URL="jdbc:mysql://127.8.251.130:3306/dlemooDB";
+    static final String DB_URL="jdbc:mysql://0.0.0.0:8889/dlemooDB";
 
     //  Database credentials
     static final String USER = "adminylXZZ1t";

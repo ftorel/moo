@@ -8,55 +8,62 @@ import java.util.ArrayList;
 
 public class FileTable {
 
-	static final public String tableName = "Documents";
+	static final public String tableName = "Document";
 	
-	static final public String id = "D_ID";
-	static final public String userID = "U_ID";
-	static final public String nom = "Name";
-	static final public String url = "URL";
+	static final public String id = "idDocument";
+	static final public String nom = "name";
+	static final public String url = "path";
 	
 	
 static public void addFile(String name , String url, String userId){
 		
 		String sqlValues = "(0,'" +
 				name + "','" +
-				url + "','" + 
-				userId + "');";
+				url + "');";
 				
 				String sql = "INSERT INTO " +
 						FileTable.tableName +" (" +
 						FileTable.id + "," + 
 						FileTable.nom + "," + 
-						FileTable.url + "," +
-						FileTable.userID +
+						FileTable.url +
 				") VALUES " + sqlValues;
 				
-				System.out.println(sql);
+				
+				/*String sqlValues2 = "(0,'" +
+						name + "','" +
+						url + "');";
+						
+						String sql2 = "INSERT INTO " +
+								"Droit" +" (" +
+								FileTable.id + "," + 
+								FileTable.nom + "," + 
+								FileTable.url +
+						") VALUES " + sqlValues2;
+				
+				System.out.println(sql);*/
 				
 				/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
 	}
 
-static public void removeFile(String docId){
+static public void removeFile(String docUrl){
 	
 	String sql = "DELETE " + 
 			"FROM " + 
 			FileTable.tableName + 
 			" WHERE " + 
-			FileTable.id + 
-			" = '" + docId + "';";
+			FileTable.url + 
+			" = '" + docUrl + "';";
 			System.out.println(sql);
 			
 			/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
 }
 	
-static public ArrayList<Model.Document> FilesForUserId(String userId){
+//TODO: Only for testing
+static public ArrayList<Model.Document> FilesForUserId(){
 	
 	String sql = "SELECT * " + 
 	"FROM " + 
-	FileTable.tableName + 
-	" WHERE " + 
-	FileTable.userID + 
-	" = '" + userId + "';";
+	FileTable.tableName + ";";
 	
 	System.out.println(sql);
 	ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
@@ -73,7 +80,7 @@ static public ArrayList<Model.Document> FilesForUserId(String userId){
 				String name = (String) resultSet.getObject(FileTable.nom);
 				String id =  resultSet.getObject(FileTable.id).toString();
 				
-				Model.Document tempDoc = new Model.Document(id, userId, name, url);
+				Model.Document tempDoc = new Model.Document(id, "5", name, url);
 				
 				documentList.add(tempDoc);
 			}
