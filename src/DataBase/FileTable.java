@@ -13,19 +13,26 @@ public class FileTable {
 	static final public String id = "idDocument";
 	static final public String nom = "name";
 	static final public String url = "path";
+	static final public String creationDate = "creationDate";
 	
 	
 static public void addFile(String name , String url, String userId){
 		
+	
+	
+	java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+	
 		String sqlValues = "(0,'" +
 				name + "','" +
-				url + "');";
+				url + "','" +
+				date + "');";
 				
 				String sql = "INSERT INTO " +
 						FileTable.tableName +" (" +
 						FileTable.id + "," + 
 						FileTable.nom + "," + 
-						FileTable.url +
+						FileTable.url + "," + 
+						FileTable.creationDate +
 				") VALUES " + sqlValues;
 				
 				
