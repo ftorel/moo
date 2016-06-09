@@ -46,8 +46,8 @@ public class AuthentificationServlet extends HttpServlet {
 		String password = request.getParameter("pass");
 		
 		
-		
-		LDAPObject result = ISEPAuth( login , password );
+		//LDAPObject result = ISEPAuth( login , password );
+		LDAPObject result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
 		
 		if ( result == null ){
 			response.sendRedirect("connexion.html");
