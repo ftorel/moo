@@ -143,8 +143,5 @@ public class AuthentificationServlet extends HttpServlet {
 		}
 	}
 	
-	private User warpUserModel (LDAPObject isepUser){
-		return new User(isepUser.getLogin(), isepUser.getPassword(), isepUser.getNom(), isepUser.getNomFamille(), isepUser.getPrenom(), isepUser.getType(), isepUser.getNumber(), isepUser.getMail());
-	}
 
 }
