@@ -12,25 +12,24 @@ public class TeamTable {
 	static final public String name = "name";
 	
 	
-static public  ArrayList<Model.Team> getTeamWithMembers(){
+	static public  ArrayList<Model.Team> getTeamWithMembers(){
 	
-	
-	ArrayList<Model.Team> teamList = getAllTeamName();
-	
-	if ( teamList == null || teamList.isEmpty() ){
-		System.out.println("no team");
-		return null;
-	}
-	
-	/*
-	SELECT Team.name, User.firstname 
-	FROM participation
-	JOIN Team 
-		ON Team.id_team = participation.team_id_team
-	JOIN User
-		ON User.email = participation.user_email
-	WHERE User.type = 1
-	 */
+		ArrayList<Model.Team> teamList = getAllTeamName();
+		
+		if ( teamList == null || teamList.isEmpty() ){
+			System.out.println("no team");
+			return null;
+		}
+		
+		/*
+		SELECT Team.name, User.firstname 
+		FROM participation
+		JOIN Team 
+			ON Team.id_team = participation.team_id_team
+		JOIN User
+			ON User.email = participation.user_email
+		WHERE User.type = 1
+		 */
 		
 		String sql = 
 			"SELECT " + TeamTable.tableName + "." + TeamTable.name + " , " +
@@ -91,6 +90,46 @@ static public  ArrayList<Model.Team> getTeamWithMembers(){
 		return null;
 	}
 	
+	
+	
+	static public ArrayList<Model.Team> getTeamByUser( String email ){
+		
+		ArrayList<Model.Team> list = new ArrayList<Model.Team>();
+		
+		/*
+		 SELECT Team.name , Team.id_team , User.firstname , User.lastname , User.email 
+		 FROM Participation 
+		 JOIN Team 
+		 	ON Team.id_team = Participation.team_id_team 
+		 JOIN User 
+		 	ON User.email = Participation.user_email 
+		 WHERE User.type = 1 
+		 	AND Team.id_team = 
+		 	( SELECT participation.team_id_team FROM participation WHERE participation.user_email = 'test1@gmail.com')
+		 */
+		
+		String sql = 
+				"SELECT " + TeamTable.tableName + "." + TeamTable.name + " , " +
+							TeamTable.tableName + "." + TeamTable.id + " , " +
+							UserTable.tableName +"."+ UserTable.prenom + " , " +
+							UserTable.tableName +"."+ UserTable.nom + " , " +
+							UserTable.tableName +"."+ UserTable.mail +
+				" FROM " + ParticipationTable.tableName + 
+					" JOIN " + TeamTable.tableName +
+						" ON " + TeamTable.tableName +"."+ TeamTable.id + " = " +  ParticipationTable.tableName + "." + ParticipationTable.teamId  +
+					" JOIN " + UserTable.tableName +
+						" ON " + UserTable.tableName +"." + UserTable.mail + " = " + ParticipationTable.tableName + "." + ParticipationTable.userMail  +
+				" WHERE " + UserTable.tableName + "." + UserTable.type + " = 1 " + 
+						" AND " + " ( " + "........." + " ) " ; 
+
+			System.out.println(sql);
+			
+
+			//TODO finish it 
+			
+		
+		return list;
+	}
 
 	static private ArrayList<Model.Team> getAllTeamName(){
 		
@@ -116,9 +155,7 @@ static public  ArrayList<Model.Team> getTeamWithMembers(){
 					String teamName = (String) resultGetAllTeam.getObject(TeamTable.name);
 					
 					System.out.println( " teamName : " + teamName);
-					
-					//map.put(teamName, new ArrayList<Model.User>() );
-					
+										
 					Team team = new Team(id,teamName);
 					teamList.add(team);
 				}
@@ -131,8 +168,10 @@ static public  ArrayList<Model.Team> getTeamWithMembers(){
 		return teamList;
 		
 	}
-
-
+	
+	
+	
+	
 	static public Team getTeam(String teamId){
 		
 		String sql = "Select *" + 

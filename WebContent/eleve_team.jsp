@@ -111,25 +111,35 @@
 
       </div>
     </div>
+    
+    
+    <% boolean shouldJoinTeam = Boolean.parseBoolean(request.getParameter("shouldJoinTeam")); 
+    
+    	if ( shouldJoinTeam ){ %>
+    			
+    	<div class="panel panel-default"><div class="panel-heading">Sélectionner votre groupe</div><div class="panel-body"><form role="form" name="form" action="" method="post">
+		  <form role="form" method ="POST" action ="http://localhost:8080/Moo/AddTeamServelt">
+		    <div class="form-group">
+		      <select class="form-control" id="sel1" name ="team">
+		      
+		      <%List d =(List)request.getAttribute("data");
+		       
+		    	for(int i = 0; i < d.size(); i+=1) { %>
+		    
+		    	<%Team team = ((Team)d.get(i)); %>
+		    	<option><%=team.getName()%></option>
+		    
+		     <% } %> 
+		      
+		      </select>
+		      <br>
+		      
+		      <button type="submit" class="btn btn-default">Valider</button>
+		      
+		</form></div></div>
+    			
+ 	<%}%>
         
-<div class="panel panel-default"><div class="panel-heading">Sélectionner votre groupe</div><div class="panel-body"><form role="form" name="form" action="" method="post">
-  <form role="form">
-    <div class="form-group">
-      <select class="form-control" id="sel1">
-      
-      <%List d =(List)request.getAttribute("data");
-       
-    	for(int i = 0; i < d.size(); i+=1) { %>
-    
-    	<%Team team = ((Team)d.get(i)); %>
-    	<option><%=team.getName()%></option>
-    
-     <% } %> 
-      
-      </select>
-      <br>
-    <button type="submit" class="btn btn-default">Valider</button>
-</form></div></div>
-
+        
 </body>
 </html>

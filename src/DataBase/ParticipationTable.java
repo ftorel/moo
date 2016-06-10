@@ -16,6 +16,8 @@ public class ParticipationTable {
 		
 		int sessionId = SessionTable.getIdCurrentSession();
 		
+		
+		
 		/*
 		SELECT participation.id_participation
 		FROM participation
@@ -50,4 +52,56 @@ public class ParticipationTable {
 		
 		return false;
 	}
+	
+	
+	static public boolean addUserToSpecificTeam( String userMail, String userSession, String selectedTeamName){
+		
+		//INSERT INTO `participation`( `user_email`, `team_id_team`, `Session_id_session`) 
+		//VALUES ( 'ftorel@isep.fr', ( SELECT Team.id_team FROM Team WHERE Team.name = 'camion'), 1 )
+		
+		
+		//INSERT INTO Participation ( 'user_email','team_id_team','Session_id_session' )  
+		//VALUES  ( 'florian.torel@isep.fr', (  SELECT Team.id_team FROM Team WHERE Team.name = 'camion' ) , 1 ) 
+		
+		/*
+		 INSERT INTO `participation`( `user_email`, `team_id_team`, `Session_id_session`) 
+		 VALUES 
+		 ( 
+		 	user_mail,
+		 	( SELECT Team.id_team FROM Team WHERE Team.name = selected_team_name), 
+		 	session_id
+		 )
+		 */
+		
+		String sql = 
+				"INSERT INTO " + ParticipationTable.tableName + " ( "  + ParticipationTable.userMail + "," + ParticipationTable.teamId  + "," + ParticipationTable.sessionId + " ) " +                  
+				" VALUES " +
+					" ( " +  
+						"'" + userMail + "'" + "," +
+						" ( " + 
+							" SELECT " + TeamTable.tableName + "." + TeamTable.id + 
+							" FROM " + TeamTable.tableName + 
+							" WHERE " + TeamTable.tableName + "." + TeamTable.name + " = " + "'" + selectedTeamName + "'" + 
+						" ) " + "," +
+						"'" + userSession + "'" +
+					" ) ";
+		
+		System.out.println( "sql addUserToSpecificTeam ===> " + sql);
+		
+		
+		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+		
+		if ( resultSet == null ){
+			System.out.println("The SQL has been executed, the result is null");
+			
+			return true;
+		}else{
+			return false;
+		}
+			
+		
+		
+	}
+	
+	
 }

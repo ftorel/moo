@@ -5,14 +5,16 @@ import java.io.IOException;
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import DataBase.SessionTable;
 import DataBase.UserTable;
 import ISEP.LDAPObject;
 import ISEP.LDAPaccess;
+import Utils.Constant;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -39,8 +41,8 @@ public class AuthentificationServlet extends HttpServlet {
 		String password = request.getParameter("pass");
 		
 		
-		//LDAPObject result = ISEPAuth( login , password );
-		LDAPObject result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
+		LDAPObject result = ISEPAuth( login , password );
+		//LDAPObject result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
 		
 		if ( result == null ){
 			response.sendRedirect("connexion.html");
@@ -54,25 +56,24 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		if ( type.equals("eleve")){
 			redirectPage = "eleve_accueil.html";
-			typeInt = 0;
+			typeInt = 1;
 		} else if ( type.equals("client") ){
 			redirectPage = "accueil_client.html";
-			typeInt = 1;
-		} else if ( type.equals("tuteur") ){
 			typeInt = 2;
+		} else if ( type.equals("tuteur") ){
+			typeInt = 3;
 		} else if ( type.equals("professeur") ){
 			redirectPage = "accueil_prof.html";
-			typeInt = 3;
+			typeInt = 4;
 		}
 		
 		UserTable.getAllUser();
 		
-		String userMail =  ""; //UserTable.UserExistWithMail(result.mail);
+		String userMail =  UserTable.UserExistWithMail(result.mail);
 		
 		if (!userMail.isEmpty()){
 			System.out.println("User already registered");
 		}else{
-			
 			UserTable.addUser(result.prenom, result.nomFamille, result.mail	, typeInt);
 			userMail = UserTable.UserExistWithMail(result.mail);
 		}
@@ -80,13 +81,19 @@ public class AuthentificationServlet extends HttpServlet {
 		if (!userMail.isEmpty()){
 			System.out.println("Prepare redirection to " + redirectPage);
 			
-			String sessionId = request.getSession().getId();
-			
-			System.out.println("Session ID " + sessionId);
-			System.out.println("Keeping userId in cookies " + redirectPage);
+			int idSession = SessionTable.getIdCurrentSession();
 		
-			Cookie newCookie = new Cookie(sessionId,userMail);
-			response.addCookie(newCookie);
+			
+			System.out.println("Session ID " + idSession);
+			
+			if ( idSession == -1){
+				System.out.println("An error occured with the session id");
+				return;
+			}
+			
+			HttpSession httpSession = request.getSession();
+			httpSession.setAttribute( Constant.TAG_MAIL , userMail);
+			httpSession.setAttribute( Constant.TAG_SESSION_ID , idSession);
 			
 			response.sendRedirect(redirectPage);
 		}else{
