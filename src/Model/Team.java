@@ -1,50 +1,50 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Team {
 	
 	private Integer id;
-	private String name;
-	//private ArrayList<User> members;
 	
-	public Team(Integer id ,String name){
-		
-	/*	members = new ArrayList<User>();
-			
-		User userFlo = new User();
-		userFlo.setNom("Florian");
-		members.add( userFlo);
-		
-		User userPierre = new User();
-		userPierre.setNom("Perrin");
-		members.add( userPierre);*/
-		
+	private String name;
+	
+	private ArrayList<User> members = new ArrayList<User>();
+	
+	public Team(int teamId ,String name){
 		this.name = name;
-		this.id = id;
+		this.id = teamId;
+	}
+	
+	public Team(String name ){
+		this.name = name;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	/*public void setName(String name) {
-		this.name = name;
-	}*/
 	
 	public Integer getId() {
 		return id;
 	}
 
-	/*public Integer setId(Integer is) {
-		this.name = name;
-	}*/
-
-	/*public ArrayList<User> getMembers() {
-		return members;
+	public void addUser( User user ){
+		members.add(user);
 	}
-
-	public void setMembers(ArrayList<User> members) {
-		this.members = members;
-	}*/
+	
+	@Override
+	public boolean equals(Object o) 
+	{
+		if ( o instanceof Team ){
+			return false;
+		}	
+		Team currentTeam = (Team) o;
+		
+		if ( this.name.equals(currentTeam.name) ){
+			return true;
+		}
+		return false;
+	} 
 
 
 }

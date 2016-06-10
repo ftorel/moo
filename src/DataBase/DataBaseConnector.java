@@ -13,11 +13,11 @@ public class DataBaseConnector {
 	
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 
-    static final String DB_URL="jdbc:mysql://0.0.0.0:8889/testDB";
+	static final String DB_URL="jdbc:mysql://0.0.0.0:8889/testDB";
 
     //  Database credentials
-    static final String USER = "adminylXZZ1t";
-    static final String PASS = "8KqC_tuC1qzx";
+    static final String USER = "bg";
+    static final String PASS = "bg";
      
     public static DataBaseConnector sharedInstance(){
 		return initInstance();
