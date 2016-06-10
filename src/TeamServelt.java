@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataBase.DataBaseConnector;
+import DataBase.ParticipationTable;
+import DataBase.SessionTable;
 import DataBase.TeamTable;
 import Model.Team;
 
@@ -22,7 +24,6 @@ import Model.Team;
 @WebServlet("/AddTeamServelt")
 public class TeamServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	
 	public static final String TEAM_NAME = "name";
        
@@ -40,26 +41,14 @@ public class TeamServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		ArrayList<Team> datalist = new ArrayList<Team>();
 		
-		String sql = "SELECT * FROM `User`";
-		System.out.println(sql);
-		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+		boolean isUserAlreadyHaveTeam = ParticipationTable.isUserAlreadyHaveTeam("test3@gmail.com");
 		
-		if ( resultSet == null ){
-			System.out.println("The SQL has been executed, the result is null");
-		}else{
-			   try {
-				   while (resultSet.next()) {
-					   
-					   String teamName = resultSet.getString(TEAM_NAME);
-			            //Team team = new Team(teamName);
-			            //datalist.add( team );
-			        }
-			   } 
-			   catch (SQLException e) {
-				   System.out.println("Sql exeption" + e);
-		    } 
+		ArrayList<Team> datalist = TeamTable.getTeamWithMembers();
+		
+		if ( datalist == null ){
+			System.out.println(" no datalist on teamServelt");
+			return;
 		}
 		
 		request.setAttribute("data", datalist);

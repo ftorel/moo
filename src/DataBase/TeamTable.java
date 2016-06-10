@@ -12,10 +12,15 @@ public class TeamTable {
 	static final public String name = "name";
 	
 	
-static public  ArrayList<Model.Team> getTeamWithMembers(Integer sessionId){
+static public  ArrayList<Model.Team> getTeamWithMembers(){
 	
 	
 	ArrayList<Model.Team> teamList = getAllTeamName();
+	
+	if ( teamList == null || teamList.isEmpty() ){
+		System.out.println("no team");
+		return null;
+	}
 	
 	/*
 	SELECT Team.name, User.firstname 
@@ -28,12 +33,16 @@ static public  ArrayList<Model.Team> getTeamWithMembers(Integer sessionId){
 	 */
 		
 		String sql = 
-			"SELECT " + TeamTable.tableName + "." + TeamTable.name + " , " + UserTable.tableName +"."+ UserTable.prenom + UserTable.tableName +"."+ UserTable.nom +
-			"FROM " + ParticipationTable.tableName + 
-				"JOIN " + TeamTable.tableName +
-					"ON " + TeamTable.tableName +"."+ TeamTable.id + " = " +  ParticipationTable.tableName + "." + ParticipationTable.teamId  +
-				"JOIN " + UserTable.tableName +
-					"ON " + UserTable.tableName + UserTable.mail + " = " + ParticipationTable.tableName + "." + ParticipationTable.userMail  +
+			"SELECT " + TeamTable.tableName + "." + TeamTable.name + " , " +
+						TeamTable.tableName + "." + TeamTable.id + " , " +
+						UserTable.tableName +"."+ UserTable.prenom + " , " +
+						UserTable.tableName +"."+ UserTable.nom + " , " +
+						UserTable.tableName +"."+ UserTable.mail +
+			" FROM " + ParticipationTable.tableName + 
+				" JOIN " + TeamTable.tableName +
+					" ON " + TeamTable.tableName +"."+ TeamTable.id + " = " +  ParticipationTable.tableName + "." + ParticipationTable.teamId  +
+				" JOIN " + UserTable.tableName +
+					" ON " + UserTable.tableName +"." + UserTable.mail + " = " + ParticipationTable.tableName + "." + ParticipationTable.userMail  +
 			" WHERE " + UserTable.tableName + "." + UserTable.type + " = 1 "; 
 
 		System.out.println(sql);
@@ -46,26 +55,31 @@ static public  ArrayList<Model.Team> getTeamWithMembers(Integer sessionId){
 
 				while (resultSet.next()){
 					String userName = (String) resultSet.getObject(UserTable.prenom);
+					String userEmail = (String) resultSet.getObject(UserTable.mail);
+					String userLastName = (String) resultSet.getObject(UserTable.nom);
 					String teamName = (String) resultSet.getObject(TeamTable.name);
+					Integer teamId = (Integer) resultSet.getObject(TeamTable.id);
 					
-					int position = teamList.indexOf( new Team (teamName) );
+					System.out.println( 
+							" prenom  : " + userName + "\n" +
+							" nom  : " + userLastName + "\n" +
+							" mail  : " + userEmail + "\n" );
 					
-					if ( position == -1 ){
-						break;
-					}
+					int position = teamList.indexOf( new Team (teamId,teamName) );
+										
+					if ( position != -1 ){
 						
-					Team team = teamList.get(position);
-					
-					if ( team == null ){
-						break;
+						Team team = teamList.get(position);
+						
+						if ( team != null ){
+							
+							Model.User user = new Model.User(userName, userLastName, 1 , userEmail);
+							
+							team.addUser(user);
+						}
+						
 					}
-					
-					
-					//team.addUser( new User);
-					
-					
-					//TODO add the user to the correct team
-					
+										
 				}
 				return teamList;
 			}
@@ -86,7 +100,7 @@ static public  ArrayList<Model.Team> getTeamWithMembers(Integer sessionId){
 		
 		String sqlGetAllTeam = 
 				"SELECT " + TeamTable.tableName + "." + TeamTable.name + " , " + TeamTable.tableName + "." + TeamTable.id +
-				"FROM " + TeamTable.tableName;
+				" FROM " + TeamTable.tableName;
 		
 		System.out.println( "get all team : " + sqlGetAllTeam );
 						
@@ -100,6 +114,8 @@ static public  ArrayList<Model.Team> getTeamWithMembers(Integer sessionId){
 				while (resultGetAllTeam.next()){
 					Integer id = (Integer) resultGetAllTeam.getObject(TeamTable.id);
 					String teamName = (String) resultGetAllTeam.getObject(TeamTable.name);
+					
+					System.out.println( " teamName : " + teamName);
 					
 					//map.put(teamName, new ArrayList<Model.User>() );
 					

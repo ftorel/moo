@@ -15,9 +15,6 @@ public class Team {
 		this.id = teamId;
 	}
 	
-	public Team(String name ){
-		this.name = name;
-	}
 
 	public String getName() {
 		return name;
@@ -32,19 +29,37 @@ public class Team {
 		members.add(user);
 	}
 	
+	public ArrayList<User> getMembers(){
+		return members;
+	}
+	
+	
 	@Override
 	public boolean equals(Object o) 
 	{
-		if ( o instanceof Team ){
-			return false;
-		}	
+		if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+        
 		Team currentTeam = (Team) o;
 		
 		if ( this.name.equals(currentTeam.name) ){
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return id;
 	} 
+	
+	
+	
 
 
 }

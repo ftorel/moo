@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import DataBase.UserTable;
 import ISEP.LDAPObject;
 import ISEP.LDAPaccess;
-import Model.User;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -139,8 +138,5 @@ public class AuthentificationServlet extends HttpServlet {
 		}
 	}
 	
-	private User warpUserModel (LDAPObject isepUser){
-		return new User(isepUser.getLogin(), isepUser.getPassword(), isepUser.getNom(), isepUser.getNomFamille(), isepUser.getPrenom(), isepUser.getType(), isepUser.getNumber(), isepUser.getMail());
-	}
 
 }
