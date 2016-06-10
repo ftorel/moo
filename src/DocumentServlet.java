@@ -39,7 +39,7 @@ public class DocumentServlet extends HttpServlet {
 		
 		request.setAttribute("data", datalist);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("file_manager.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("eleve_documents.jsp");
 		
 		if (dispatcher != null){
 			dispatcher.forward(request, response);

@@ -1,6 +1,7 @@
 package Model;
 
 import java.net.URL;
+import java.sql.Date;
 
 public class Document {
 
@@ -8,13 +9,15 @@ public class Document {
 	private String userId;
 	private String name;
 	private String url;
+	private Date creationDate;
 	
-	public Document(String id, String userId, String name, String url) {
+	public Document(String id, String userId, String name, String url, Date creationDate) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.name = name;
 		this.url = url;
+		this.creationDate = creationDate;
 	}
 
 	public String getId() {
@@ -33,5 +36,8 @@ public class Document {
 		return url;
 	}
 	
+	public Date getCreationDate(){
+		return this.creationDate;
+	}
 	
 }

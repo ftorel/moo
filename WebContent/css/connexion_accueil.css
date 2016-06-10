@@ -26,6 +26,7 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
   outline: 0;                                   
   outline: 0 !important;
   outline-style:none;
+  text-decoration: none;
 }
 
 
@@ -53,6 +54,46 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
     padding-top: 25px; 
 }
 
+/* menu trois barres */
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,500,700);
+.menu-links {
+  float: left;  
+  padding-left: 0px;
+}
+
+.toggle-menu {
+  float: right; 
+}
+
+.toggle-menu li {
+  display: inline-block;
+  float: left;
+  list-style-type: none;
+  text-align: left;
+}
+
+.toggle {
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+li.toggle:hover span.toggle-menu-bar {
+  background-color: #ddd;
+}
+
+.toggle-menu-bar {
+  display: block;
+  width: 25px;
+  height: 4px;
+  background-color: black;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 auto 3px;
+  transition: background-color 0.2s;
+}
+
 
 /* responsive */
 
@@ -70,7 +111,7 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
     {
         font-size: 22pt;
         font-weight: bold;
-        padding-top: 15px;
+        padding-top: 5px;
         padding-bottom: 20px;
     }
 
@@ -82,6 +123,7 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
     #logo_isep_pages
     {
         width: 80px;
+        padding-top: 10px;
     }
 
     #logo_deconnexion
@@ -92,11 +134,29 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
     #logo_deconnexion_pages
     {
         width: 30px;
+        padding-top: 10px;
     }
 
     #menu_lateral
     {
+        display: none; 
+    }
+
+    #menu_horizontal
+    {
+        display: none;
+        padding-bottom: 15pt;
+    }
+
+    #menu_xs
+    {
+        display: block;
+    }
+
+    #cadre_contenu
+    {
         padding-top: 0px;
+        font-size: 6pt;
     }
 }
 
@@ -130,7 +190,25 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
 
     #menu_lateral
     {
+        display: none; 
+        font-size: 11pt;
+    }
+
+    #menu_horizontal
+    {
+        display: block;
+        padding-bottom: 15pt;
+    }
+
+    #menu_xs
+    {
+        display: none;
+    }
+
+    #cadre_contenu
+    {
         padding-top: 5px;
+        font-size: 11pt;
     }
 }
 
@@ -138,7 +216,7 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
 {
     h1 
     { 
-        font-size: 32pt;
+        font-size: 30pt;
         font-weight: bold;
         padding-top: 50px;
         padding-bottom: 80px;
@@ -146,7 +224,7 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
 
     #titre_pages
     {
-        font-size: 32pt;
+        font-size: 30pt;
         font-weight: bold;
         padding-top: 5px;
         padding-bottom: 30px;
@@ -164,7 +242,24 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
 
     #menu_lateral
     {
+        display: block;
+        font-size: 11pt;
+    }
+
+    #menu_horizontal
+    {
+        display: none;
+    }
+
+    #menu_xs
+    {
+        display: none;
+    }
+
+    #cadre_contenu
+    {
         padding-top: 10px;
+        font-size: 12pt;
     }
 }
 
@@ -198,7 +293,24 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
 
     #menu_lateral
     {
+        display: block;
+        font-size: 11pt;
+    }
+
+    #menu_horizontal
+    {
+        display: none;
+    }
+
+    #menu_xs
+    {
+        display: none;
+    }
+
+    #cadre_contenu
+    {
         padding-top: 50px;
+        font-size: 12pt;
     }
 
     /* #logo_session
