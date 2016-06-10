@@ -12,6 +12,7 @@ public class SessionTable {
 	static final public String startDate = "startDate";
 	static final public String endDate = "endDate";
 	
+
 	
 	public static int getIdCurrentSession(){
 		

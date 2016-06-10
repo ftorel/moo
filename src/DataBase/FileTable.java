@@ -1,5 +1,6 @@
 package DataBase;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -22,34 +23,20 @@ static public void addFile(String name , String url, String userId){
 	
 	java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
 	
-		String sqlValues = "(0,'" +
+		String sqlValues = "('" +
 				name + "','" +
 				url + "','" +
 				date + "');";
 				
 				String sql = "INSERT INTO " +
 						FileTable.tableName +" (" +
-						FileTable.id + "," + 
 						FileTable.nom + "," + 
 						FileTable.url + "," + 
 						FileTable.creationDate +
 				") VALUES " + sqlValues;
 				
-				
-				/*String sqlValues2 = "(0,'" +
-						name + "','" +
-						url + "');";
-						
-						String sql2 = "INSERT INTO " +
-								"Droit" +" (" +
-								FileTable.id + "," + 
-								FileTable.nom + "," + 
-								FileTable.url +
-						") VALUES " + sqlValues2;
-				
-				System.out.println(sql);*/
-				
-				/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
+
+				DataBaseConnector.sharedInstance().executeSQL(sql);
 	}
 
 static public void removeFile(String docUrl){
@@ -61,8 +48,8 @@ static public void removeFile(String docUrl){
 			FileTable.url + 
 			" = '" + docUrl + "';";
 			System.out.println(sql);
-			
-			/*ResultSet resultSet = */DataBaseConnector.sharedInstance().executeSQL(sql);
+
+			DataBaseConnector.sharedInstance().executeSQL(sql);
 }
 	
 //TODO: Only for testing
@@ -86,8 +73,9 @@ static public ArrayList<Model.Document> FilesForUserId(){
 				String url = (String) resultSet.getObject(FileTable.url);
 				String name = (String) resultSet.getObject(FileTable.nom);
 				String id =  resultSet.getObject(FileTable.id).toString();
+				Date creationDate = resultSet.getDate(FileTable.creationDate);
 				
-				Model.Document tempDoc = new Model.Document(id, "5", name, url);
+				Model.Document tempDoc = new Model.Document(id, "5", name, url,creationDate);
 				
 				documentList.add(tempDoc);
 			}
