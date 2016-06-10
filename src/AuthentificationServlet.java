@@ -1,8 +1,6 @@
 
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
@@ -11,15 +9,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-
-import DataBase.DataBaseConnector;
 import DataBase.UserTable;
 import ISEP.LDAPObject;
 import ISEP.LDAPaccess;
-import Model.User;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -72,7 +65,9 @@ public class AuthentificationServlet extends HttpServlet {
 			typeInt = 3;
 		}
 		
-		String userMail = UserTable.UserExistWithMail(result.mail);
+		UserTable.getAllUser();
+		
+		String userMail =  ""; //UserTable.UserExistWithMail(result.mail);
 		
 		if (!userMail.isEmpty()){
 			System.out.println("User already registered");

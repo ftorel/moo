@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class User implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	private String type;
+	private int type;
 	private String nom;
 	private String prenom;
 	private String mail;
 	
-	public User(String nom, String prenom, String type, String mail)
+	public User(String nom, String prenom, int type, String mail)
 	{
 		this.nom = nom;
 		this.prenom = prenom;
@@ -42,4 +42,18 @@ public class User implements Serializable
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	
 }
