@@ -37,12 +37,26 @@ public class AuthentificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		boolean onISEPServer = false;
+		boolean isFlorianUser = true;
+		
+		
 		String login = request.getParameter("log");
 		String password = request.getParameter("pass");
 		
+		LDAPObject result= null;
 		
-		LDAPObject result = ISEPAuth( login , password );
-		//LDAPObject result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
+		if ( onISEPServer ){
+			result = ISEPAuth( login , password );
+		} else {
+			if ( isFlorianUser ){
+				result = new LDAPObject("ftorel", "isep2013", "Florian", "Torel", "Florian", "eleve", "7872", "ftorel@isep.fr");
+			} else {
+				result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
+			}
+		}
+		
+	
 		
 		if ( result == null ){
 			response.sendRedirect("connexion.html");

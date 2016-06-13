@@ -71,16 +71,25 @@
         <li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="60" width="60"> DOCUMENTS</li>
       </ul>
     </div>
+    
+    <%List data =(List)request.getAttribute("data");
+	boolean shouldJoinTeam = Boolean.parseBoolean( (String) request.getAttribute("shouldJoinTeam")); %>
    
-<div class="col-sm-9">
-      <div class="panel panel-default">
-        <div class="panel-heading"><h3>CHOIX EQUIPE</h3></div>
-        <div class="panel-body">
-        
-<div id="accordion1" class="panel-group">
+	<div class="col-sm-9">
+	      <div class="panel panel-default">
+	      
+	      <% if ( shouldJoinTeam ){ %>
+	        <div class="panel-heading"><h3>CHOIX EQUIPE</h3></div>
+	        <% } else { %>
+	        <div class="panel-heading"><h3>VOTRE EQUIPE</h3></div>
+	        <% } %>
+	        <div class="panel-body">
+	        
+	<div id="accordion1" class="panel-group">
 
-	<%List data =(List)request.getAttribute("data");
-    for(int i = 0; i < data.size(); i+=1) { %>
+	
+	
+    <% for(int i = 0; i < data.size(); i+=1) { %>
  
     <%Team team = ((Team)data.get(i)); %>
 
@@ -98,7 +107,7 @@
 	    
 	    	<%User membre = (User) members.get(j); %>
 	    	
-	      	<p class="panel-body"><%= membre.getNom() %></p>
+	      	<p class="panel-body"><%= membre.getNom() + " " + membre.getPrenom()  %></p>
 	      
 	      <% } %>
 	      
@@ -107,15 +116,13 @@
   
   <% } %>
     
-</div>
+	</div>
 
       </div>
     </div>
     
     
-    <% boolean shouldJoinTeam = Boolean.parseBoolean(request.getParameter("shouldJoinTeam")); 
-    
-    	if ( shouldJoinTeam ){ %>
+    <% if ( shouldJoinTeam ){ %>
     			
     	<div class="panel panel-default"><div class="panel-heading">Sélectionner votre groupe</div><div class="panel-body"><form role="form" name="form" action="" method="post">
 		  <form role="form" method ="POST" action ="http://localhost:8080/Moo/AddTeamServelt">

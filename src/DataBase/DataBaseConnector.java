@@ -73,7 +73,6 @@ public class DataBaseConnector {
 
 		try {
 			
-			System.out.print("init driver");
 
 			Class.forName(JDBC_DRIVER);
 
@@ -85,11 +84,7 @@ public class DataBaseConnector {
 
 		try {
 			
-			System.out.print("start db connection");
-			System.out.print("url = " + DB_URL + "\n");
-			System.out.print("user = " + USER + "\n");
-			System.out.print("pass = " + PASS + "\n");
-
+			
 			dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
 			return dbConnection;
 

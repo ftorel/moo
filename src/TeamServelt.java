@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DataBase.DataBaseConnector;
 import DataBase.ParticipationTable;
-import DataBase.TeamTable;
 import Model.Team;
 import Utils.Constant;
 
@@ -46,25 +43,30 @@ public class TeamServelt extends HttpServlet {
 		
 		ArrayList<Team> datalist = new ArrayList<Team>();
 		
-		if ( ! isUserAlreadyHaveTeam ){
+		if ( isUserAlreadyHaveTeam ){
 			
-			//display each team
+			//display the user team
 			
-			datalist = TeamTable.getTeamWithMembers();
-					
-			if ( datalist == null){
+			System.out.println("user do have a team " + isUserAlreadyHaveTeam) ;
+			
+			//TODO finish this method
+			datalist = ParticipationTable.getTeamPartnersByUserEmail( userMail );
+			
+			if ( datalist == null || datalist.isEmpty()){
 				System.out.println(" no datalist on teamServelt");
 				return;
 			}
 			
+			
 		} else {
 			
-			//display the user team
+			//display each team
 			
-			//TODO finish this method
-			datalist = TeamTable.getTeamByUser( userMail );
+			System.out.println("user doens't have a team " + isUserAlreadyHaveTeam);
 			
-			if ( datalist == null || datalist.isEmpty()){
+			datalist = ParticipationTable.getTeamWithMembers();
+					
+			if ( datalist == null || datalist.isEmpty() ){
 				System.out.println(" no datalist on teamServelt");
 				return;
 			}
@@ -72,7 +74,7 @@ public class TeamServelt extends HttpServlet {
 		}
 		
 		request.setAttribute("data", datalist);
-		request.setAttribute("shouldJoinTeam", isUserAlreadyHaveTeam);
+		request.setAttribute("shouldJoinTeam", String.valueOf(!isUserAlreadyHaveTeam));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("eleve_team.jsp");
 	    if (dispatcher != null){
@@ -107,6 +109,8 @@ public class TeamServelt extends HttpServlet {
 		} 
 		
 		ParticipationTable.addUserToSpecificTeam(userMail, sId, selectedTeamName);
+		
+		doGet(request,response);
 		
 	}
 	
