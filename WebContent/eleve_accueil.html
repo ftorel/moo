@@ -52,6 +52,28 @@
       </div>
     </div>
 
+    <!-- <div class="row text-center">
+      <div class="col-md-3 col-sm-3 col-xs-12">  
+        <img id="logo_sujet" src="sujet.svg" height="80" width="80">
+        <h4>Sujet</h4>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <img id="logo_equipe" src="equipe.svg" height="80" width="80">
+        <h4>Equipe</h4>
+      </div>
+      
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <img id="logo_rdv" src="rdv.svg" height="80" width="80">
+        <h4>RDV</h4>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <img id="logo_docs" src="docs.svg" height="80" width="80">
+        <h4>Docs</h4>
+      </div>
+    </div> -->
+
   </div> 
 
  <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
@@ -65,7 +87,8 @@
 	      $('#logo_sujet').mouseup(function()
 	      {
 	        $(this).fadeTo("fast", 1);
-	        window.open ('eleve_sujet.html','_self',false)
+	        //window.open ('eleve_sujet.html','_self',false)
+	        document.location.href="http://localhost:8080/Moo/SujetEleveServlet";
 	      });
       
       $('#logo_deconnexion').mousedown(function()

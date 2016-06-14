@@ -6,6 +6,10 @@ public class Sujet {
 	private String name;
 	private String decription;
 	
+	public Sujet ( int id ){
+		this.id = id;
+	}
+	
 	
 	public Integer getId() {
 		return id;

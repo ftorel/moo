@@ -29,6 +29,12 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
   text-decoration: none;
 }
 
+li
+{   
+    padding-left: 0pt;
+    padding-right: 10pt;
+}
+
 
 /* ---------- page connexion ---------- */ 
 
@@ -53,6 +59,7 @@ a:hover, a:active, a:focus, a:link, a:visited           /* for firefox */
 { 
     padding-top: 25px; 
 }
+
 
 /* menu trois barres */
 
@@ -145,18 +152,31 @@ li.toggle:hover span.toggle-menu-bar {
     #menu_horizontal
     {
         display: none;
-        padding-bottom: 15pt;
+        padding-bottom: 25pt;
     }
 
     #menu_xs
     {
         display: block;
+        padding-bottom: 20pt;
     }
 
     #cadre_contenu
     {
         padding-top: 0px;
         font-size: 6pt;
+    }
+
+    #panel_title
+    {
+        font-size: 12pt;
+        font-weight: bold;
+    }
+
+    #upload_btn
+    {
+        text-align: center;
+        display: inline-block;  
     }
 }
 
@@ -210,6 +230,23 @@ li.toggle:hover span.toggle-menu-bar {
         padding-top: 5px;
         font-size: 11pt;
     }
+
+    #panel_title
+    {
+        font-size: 15pt;
+        font-weight: bold;
+    }
+
+    #upload_btn
+    {
+        text-align: center;
+        display: inline-block;
+    }
+
+    #contenu 
+    {
+        padding-top: 10pt;
+    }
 }
 
 @media screen and (min-width: 780px)
@@ -242,13 +279,13 @@ li.toggle:hover span.toggle-menu-bar {
 
     #menu_lateral
     {
-        display: block;
-        font-size: 11pt;
+        display: none;
     }
 
     #menu_horizontal
     {
-        display: none;
+        display: block;
+        padding-bottom: 15pt;
     }
 
     #menu_xs
@@ -260,6 +297,24 @@ li.toggle:hover span.toggle-menu-bar {
     {
         padding-top: 10px;
         font-size: 12pt;
+    }
+
+    #panel_title
+    {
+        font-size: 18pt;
+        font-weight: bold;
+    }
+
+    #upload_btn
+    {
+        text-align: center;
+        display: inline-block;
+    
+    }
+
+    #contenu 
+    {
+        padding-top: 10pt;
     }
 }
 
@@ -313,20 +368,25 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 12pt;
     }
 
-    /* #logo_session
+    #panel_title
     {
-        -webkit-transition: width 2s, height 2s, -webkit-transform 2s;
-        transition: width 2s, height 2s, transform 2s;
+        font-size: 18pt;
+        font-weight: bold;
     }
 
-    #logo_session:hover
+    #upload_btn
     {
-        width: 100;
-        height: 100;
-        -webkit-transform: rotate(360deg); 
-        transform: rotate(360deg);
-    } */
-  
+        text-align: center;
+        display: inline-block;
+    
+    }
+
+    #contenu 
+    {
+        padding-top: 10pt;
+    }
+
+    
   /* ---------- autres pages ---------- */  
 
     #logo_isep_pages
@@ -344,19 +404,6 @@ li.toggle:hover span.toggle-menu-bar {
 
 
 }
-
-
- /*
-h1
-{
-    font-weight: bold;
-    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
-    font-variant: normal;
-    /*font-size: 38pt; 
-    padding-bottom: 100px;
-    padding-top: 80px;
-}
-*/
 
 
 
