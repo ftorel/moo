@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DataBase.ParticipationTable;
 import DataBase.SessionTable;
 import DataBase.UserTable;
 import ISEP.LDAPObject;
@@ -105,9 +106,12 @@ public class AuthentificationServlet extends HttpServlet {
 				return;
 			}
 			
+			int teamId = ParticipationTable.getTeamIdByUserEmail(userMail);
+					
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute( Constant.TAG_MAIL , userMail);
 			httpSession.setAttribute( Constant.TAG_SESSION_ID , idSession);
+			httpSession.setAttribute( Constant.TAG_TEAM_ID , teamId);
 			
 			response.sendRedirect(redirectPage);
 		}else{

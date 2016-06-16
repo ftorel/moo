@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,17 +85,12 @@
       </ul>
     </div>
 
-
-      <div id="cadre_rdv" class="col-md-9 col-sm-12 col-xs-12">
+	<div id="cadre_rdv" class="col-md-9 col-sm-12 col-xs-12">
         <div class="panel panel-warning">
           <div id="panel_title" class="panel-heading">RDV</div>
           <div class="panel-body">
 
             <table class="table table-striped">
-
-              <input id="clickMe" type="button" class="btn btn-warning" value="Lancer le minuteur" onclick="addTimer();" />
-                <p id="demo"></p>
-                <p id="stop"></p>
 
               <thead>
                   <tr>
@@ -134,6 +131,11 @@
           </div>
         </div>
       </div>
+      
+    
+    
+    
+    
     </div>
   </div>
 
@@ -141,78 +143,7 @@
 
 <script>
 
-  var theTimer = setInterval(myTimer,1000);
-  clearInterval(theTimer);
-  var time = 0;
-  var timerRun = false;
-
-  function addTimer()
-  {
-
-    if(time == 0)
-      {
-        theTimer = setInterval(myTimer,1000);
-        timerRun = true;
-      }
-    else
-      {
-        clearInterval(theTimer);
-        time = 0 ;
-        timerRun = false;
-      }
-  
-    addStopButton("button");
-
-  }
-
-  function myTimer() 
-  {
-    //   var d = new Date();
-    time = time + 1;
-    //document.getElementById("demo").innerHTML = time
-    //document.getElementById("demo").
-    d = new Date(time * 1000);
-    var m =  d.getMinutes().toString();
-    var s =  d.getSeconds().toString();
-
-    if (m.length == 1)
-    {
-      m = "0" + m
-    }
-    if (s.length == 1)
-    {
-      s = "0" + s
-    }
-    
-    document.getElementById("demo").innerHTML = m + ":" + s;
-  }
-
-  function addStopButton(type) 
-  {
-      //Create an input type dynamically.   
-      var element = document.getElementById("clickMe");
-      //Assign different attributes to the element. 
-      element.type = type;
-      
-      // Really? You want the default value to be the type string?
-      var name = "Lancer le minuteur";  // And the name too
-      if (timerRun)
-      {
-        name = "Arrêter le minuteur";
-      }
-      else
-      {
-        document.getElementById("demo").innerHTML = "";
-      }
-      
-      element.value = name;
-      element.name = name;
-      element.onclick = function() 
-      { // Note this is a function
-        addTimer();
-      };
-  }
-
+ 
   jQuery(document).ready(function($){
   $("li.content").hide();
   $("ul.toggle-menu").delegate("li.toggle", "click", function() { 
