@@ -50,7 +50,7 @@ public class MeetingServlet extends HttpServlet {
 		 
 		request.setAttribute("meetings", meetings);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("eleve_team.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("eleve_rdv.jsp");
 	    if (dispatcher != null){
 	        dispatcher.forward(request, response);
 	    }

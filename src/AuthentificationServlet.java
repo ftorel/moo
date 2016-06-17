@@ -99,7 +99,7 @@ public class AuthentificationServlet extends HttpServlet {
 			int idSession = SessionTable.getIdCurrentSession();
 		
 			
-			System.out.println("Session ID " + idSession);
+			
 			
 			if ( idSession == -1){
 				System.out.println("An error occured with the session id");
@@ -107,6 +107,9 @@ public class AuthentificationServlet extends HttpServlet {
 			}
 			
 			int teamId = ParticipationTable.getTeamIdByUserEmail(userMail);
+			
+			System.out.println("Session ID " + idSession);
+			System.out.println("Team ID " + teamId);
 					
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute( Constant.TAG_MAIL , userMail);

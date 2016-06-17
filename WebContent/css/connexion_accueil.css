@@ -167,7 +167,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 6pt;
     }
 
-    #panel_title
+    #panel_title, #legende
     {
         font-size: 12pt;
         font-weight: bold;
@@ -231,7 +231,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 11pt;
     }
 
-    #panel_title
+    #panel_title, #legende
     {
         font-size: 15pt;
         font-weight: bold;
@@ -299,7 +299,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 12pt;
     }
 
-    #panel_title
+    #panel_title, #legende 
     {
         font-size: 18pt;
         font-weight: bold;
@@ -368,7 +368,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 12pt;
     }
 
-    #panel_title
+    #panel_title, #legende
     {
         font-size: 18pt;
         font-weight: bold;

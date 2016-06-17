@@ -36,10 +36,10 @@ public class SujetEleveServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession httpSession = request.getSession();
-		String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
 		Integer sessionId = (Integer) httpSession.getAttribute( Constant.TAG_SESSION_ID );
+		Integer teamId = (Integer) httpSession.getAttribute( Constant.TAG_TEAM_ID );
 		
-		Sujet sujet = ProjetTable.getSubjectByUserMail(userMail, sessionId);
+		Sujet sujet = ProjetTable.getSubjectByUserMail(sessionId,teamId);
 		
 		request.setAttribute("sujet", sujet);
 		

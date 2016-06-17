@@ -3,7 +3,8 @@
 <%@ page import="Model.User" %>    
     
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Documents</title>
   <meta charset="utf-8">
@@ -38,24 +39,23 @@
     </div>
 
     <div id="menu_horizontal" class="row text-center">
-      <div class="col-md-2 col-md-offset-2 col-sm-3 col-xs-2 col-xs-offset-1">  
-        <img id="logo_sujet" src="drawable/home.png" height="40" width="40">
+      <div class="col-md-2 col-md-offset-2 col-sm-2 col-md-offset-2 col-xs-2 col-xs-offset-1">  
+        <a href="eleve_accueil.html"><img id="logo_sujet" src="drawable/home.png" height="40" width="40"></a>
       </div>
 
-
-      <div class="col-md-2 col-sm-3 col-xs-2">
-        <img id="logo_equipe" src="drawable/sujet.svg" height="40" width="40">
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        <a href="http://localhost:8080/Moo/SujetEleveServlet"><img id="logo_equipe" src="drawable/sujet.svg" height="40" width="40"></a>
       </div>
 
-      <div class="col-md-2 col-sm-3 col-xs-2">
-        <img id="logo_equipe" src="drawable/equipe.svg" height="40" width="40">
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        <a href="http://localhost:8080/Moo/AddTeamServelt"><img id="logo_equipe" src="drawable/equipe.svg" height="40" width="40"></a>
       </div>
       
-      <div class="col-md-2  col-sm-3 col-xs-2">
-        <img id="logo_rdv" src="drawable/rdv.svg" height="40" width="40">
+      <div class="col-md-2  col-sm-2 col-xs-2">
+        <a href="http://localhost:8080/Moo/MeetingServlet"><img id="logo_rdv" src="drawable/rdv.svg" height="40" width="40"></a>
       </div>
 
-      <div class="col-md-2  col-sm-3 col-xs-2">
+      <div class="col-md-2  col-sm-2 col-xs-2">
         <img id="logo_docs" src="drawable/docs.svg" height="40" width="40">
       </div>
     </div>
@@ -65,24 +65,13 @@
 
       <div id="menu_lateral" class="col-sm-3">
         <ul class="list-group">
-          <a href="eleve_accueil.html">
-            <li class="list-group-item"><img src="home.png" height="50" width="50"> ACCUEIL</li>
-          </a>
-          <a href="eleve_sujet.html"> 
-            <li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> MON SUJET</li>
-          </a>
-          <a href="eleve_team.html">
-            <li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50">  MON ÉQUIPE</li>
-          </a>
-          <a href="eleve_rdv.html">
-            <li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"> RDV</li>
-          </a>
-          <a href="">
-            <li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"> <b> DOCUMENTS</b></li>
-          </a>
+          <a href="eleve_accueil.html"><li class="list-group-item"><img src="drawable/home.png" height="50" width="50"> ACCUEIL</li></a>
+          <a href="http://localhost:8080/Moo/SujetEleveServlet"><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> MON SUJET</li></a>
+          <a href="http://localhost:8080/Moo/AddTeamServelt"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50">  MON ÉQUIPE</li></a>
+          <a href="http://localhost:8080/Moo/MeetingServlet"><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"> RDV</li></a>
+          <li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"> <b> DOCUMENTS</b></li>
         </ul>
       </div>
-
 
 
       <div id="menu_xs" class="menu-links">
@@ -92,34 +81,37 @@
             <span class="toggle-menu-bar"></span>
             <span class="toggle-menu-bar"></span>
           </li>
-          <li class="content" style="display: none;">
+          <li class="content">
             <ul>
-              <li><img src="sujet.svg" height="60" width="60"></li> <p>&nbsp;</p>
-              <li><img src="equipe.svg" height="60" width="60"></li> <p>&nbsp;</p>
-              <li><img src="rdv.svg" height="60" width="60"></li> <p>&nbsp;</p>
-              <li><img src="docs.svg" height="60" width="60"></li> <p>&nbsp;</p>
+              <a href="eleve_accueil.html"><li><img src="home.png" height="30" width="30"></li></a>
+              <a href="http://localhost:8080/Moo/SujetEleveServlet"><li><img src="sujet.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/AddTeamServelt"><li><img src="equipe.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/MeetingServlet"><li><img src="rdv.svg" height="30" width="30"></li></a>
+              <li><img src="docs.svg" height="30" width="30"></li>
             </ul>
           </li>
         </ul>
       </div>
 
 
-      <div class="col-md-9 col-sm-9 col-xs-12">
-        <div class="panel panel-default">
-          <form method="post" action="UploadServlet" enctype="multipart/form-data">
-            Select file to upload :  (max 20Mb)
-            <br/><br/>
-            <input type="file" name="uploadFile" />
-            <br/><br/>
-            <input type="submit" value="Upload" />
-          </form>
+
+      <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="panel panel-danger">
+          <div id="panel_title" class="panel-heading">Sélectionner un fichier à poster (max 20Mb)</div>
+           <br/><br/>
+            <form method="post" action="UploadServlet" enctype="multipart/form-data">             
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center"><input type="file" name="uploadFile"/></div>
+              <br/><br/>
+              <br/>
+              <div class="form-group col-md-12 col-sm-12 col-xs-12 text-center"><input type="submit" class="btn btn-danger" id="upload_btn" value="Upload"/></div>
+            </form>
+           <br/><br/>
+           <br/>
         
         <div class="panel-body">
         
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Documents</h3>
-          </div>
+        <div class="panel panel-danger">
+          <div id="panel_title" class="panel-heading">Documents</div>
           <table class="table">
 
             <thead>
@@ -133,8 +125,7 @@
               </tr>
             </thead>
 
-
-<%List data =(List)request.getAttribute("data");
+            <%List data =(List)request.getAttribute("data");
 
 	for(int i = 0; i < data.size(); i+=1) { %>
 

@@ -104,10 +104,10 @@ public class UploadServlet extends HttpServlet {
 	                        String filePath = uploadPath + File.separator + fileName;
 	                        filePath = filePath.replace(" ","_");
 	                        System.out.println("The upload directory is : " + filePath);
-	                        File storeFile = new File(filePath);
+	                        //File storeFile = new File(filePath);
 	 
 	                        // saves the file on disk
-	                        item.write(storeFile);
+	                        //item.write(storeFile);
 	                        
 	                        FileTable.addFile(fileName, filePath, "7");
 	                    }

@@ -1,6 +1,7 @@
 package DataBase;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -26,13 +27,16 @@ public class TeamMeetingTable {
 				" SELECT " + MeetingTable.tableName + "." + MeetingTable.comment + "," +
 						MeetingTable.tableName + "." + MeetingTable.startDate + "," +
 						MeetingTable.tableName + "." + MeetingTable.endDate + "," +
-						MeetingTable.tableName + "." + MeetingTable.id + "," +
+						MeetingTable.tableName + "." + MeetingTable.id +
 				" FROM " + TeamMeetingTable.tableName + 
 				" JOIN " + MeetingTable.tableName +
 					" ON " + MeetingTable.tableName + "." + MeetingTable.id + " = " + TeamMeetingTable.tableName + "." + TeamMeetingTable.idMeeting +
 				" JOIN " + TeamTable.tableName +
 					" ON " + TeamTable.tableName + "." + TeamTable.id + " = " + TeamMeetingTable.tableName + "." + TeamMeetingTable.idTeam +
 				" WHERE " + TeamTable.tableName + "." + TeamTable.id + " = " + Integer.toString(teamId);
+		
+		
+		System.out.println("sql getMeetingsByTeamId ===> " + sql);
 		
 		ResultSet result = DataBaseConnector.sharedInstance().executeSQL(sql);
 		
@@ -48,8 +52,8 @@ public class TeamMeetingTable {
 					
 					Integer meetingId = (Integer) result.getObject(MeetingTable.id);
 					String comment = (String) result.getObject(MeetingTable.comment);
-					String endDate = (String) result.getObject(MeetingTable.endDate);
-					String startDate = (String) result.getObject(MeetingTable.startDate);
+					Timestamp endDate = (Timestamp) result.getObject(MeetingTable.endDate);
+					Timestamp startDate = (Timestamp) result.getObject(MeetingTable.startDate);
 					
 					Model.Meeting meeting = new Model.Meeting(meetingId);
 					meeting.setComment(comment);

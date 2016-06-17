@@ -11,6 +11,7 @@
   <link href="css/connexion_accueil.css" rel="stylesheet"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/myjavascript.js"></script>
   
 </head>
 <body>
@@ -25,7 +26,7 @@
     </div>
 
     <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3 ">
-      <img id="logo_deconnexion_pages" src="drawable/deconnexion.svg">
+      <a href="connexion.html"><img id="logo_deconnexion_pages" src="drawable/deconnexion.svg"></a>
     </div>
   </div>
 
@@ -36,24 +37,24 @@
   </div>
 
   <div id="menu_horizontal" class="row text-center">
-        <div class="col-md-2 col-md-offset-2 col-sm-2 col-md-offset-2 col-xs-2 col-xs-offset-1">  
-          <a href="eleve_accueil.html"><img id="logo_sujet" src="drawable/home.png" height="40" width="40"></a>
+        <div  class="col-md-2 col-md-offset-2 col-sm-2 col-md-offset-2 col-xs-2 col-xs-offset-1">  
+          <a href="eleve_accueil.html"><img  id="logo_home" src="drawable/home.png" height="40" width="40"></a>
         </div>
 
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <a href=""><img id="logo_equipe" src="drawable/sujet.svg" height="40" width="40"></a>
+        <div id="logo_sujet" class="col-md-2 col-sm-2 col-xs-2">
+        	<img  src="drawable/sujet.svg" height="40" width="40">
         </div>
 
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <a href="eleve_equipe.html"><img id="logo_equipe" src="drawable/equipe.svg" height="40" width="40"></a>
+        <div id="logo_equipe" class="col-md-2 col-sm-2 col-xs-2">
+          <a href="http://localhost:8080/Moo/AddTeamServelt"><img  src="drawable/equipe.svg" height="40" width="40"></a>
         </div>
         
-        <div class="col-md-2  col-sm-2 col-xs-2">
-          <a href="eleve_rdv.html"><img id="logo_rdv" src="drawable/rdv.svg" height="40" width="40"></a>
+        <div id="logo_rdv" class="col-md-2  col-sm-2 col-xs-2">
+          <a href="http://localhost:8080/Moo/MeetingServlet"><img  src="drawable/rdv.svg" height="40" width="40"></a>
         </div>
 
-        <div class="col-md-2  col-sm-2 col-xs-2">
-          <a href="eleve_DocumentsV2.html"><img id="logo_docs" src="drawable/docs.svg" height="40" width="40"></a>
+        <div id="logo_docs" class="col-md-2  col-sm-2 col-xs-2">
+          <a href="http://localhost:8080/Moo/DocumentServlet"><img src="drawable/docs.svg" height="40" width="40"></a>
         </div>
       </div>
 
@@ -61,10 +62,10 @@
     	<div id="menu_lateral" class="col-sm-3">
         <ul class="list-group">
           <a href="eleve_accueil.html"><li class="list-group-item"><img src="drawable/home.png" height="50" width="50"> ACCUEIL</li></a>
-          <a href=""><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"><b>  MON SUJET</b></li></a>
-          <a href="eleve_equipe.html"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50">  MON ÉQUIPE</li></a>
-          <a href="eleve_rdv.html"><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50">  RDV</li></a>
-          <a href="eleve_DocumentsV2.html"><li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50">  DOCUMENTS</li></a>
+          <li id="logo_sujet" class="list-group-item list-group-item-success"><img  src="drawable/sujet.svg" height="50" width="50"><b>  MON SUJET</b></li></a>
+          <a href="http://localhost:8080/Moo/AddTeamServelt"><li id="logo_equipe" class="list-group-item list-group-item-info"><img  src="drawable/equipe.svg" height="50" width="50">  MON ÉQUIPE</li></a>
+          <a href="http://localhost:8080/Moo/MeetingServlet"><li id="logo_rdv" class="list-group-item list-group-item-warning"><img  src="drawable/rdv.svg" height="50" width="50">  RDV</li></a>
+          <a href="http://localhost:8080/Moo/DocumentServlet"><li id="logo_docs" class="list-group-item list-group-item-danger"><img  src="drawable/docs.svg" height="50" width="50">  DOCUMENTS</li></a>
         </ul>
       </div>
 
@@ -77,11 +78,11 @@
           </li>
           <li class="content">
             <ul>
-              <a href="eleve_accueil.html"><li><img src="drawable/home.png" height="30" width="30"></li></a>
-              <a href=""><li><img src="drawable/sujet.svg" height="30" width="30"></li></a> 
-              <a href="eleve_equipe.html"><li><img src="drawable/equipe.svg" height="30" width="30"></li></a> 
-              <a href="eleve_rdv.html"><li><img src="drawable/rdv.svg" height="30" width="30"></li></a>
-              <a href="eleve_DocumentsV2.html"><li><img src="drawable/docs.svg" height="30" width="30"></li></a> 
+              <a href="eleve_accueil.html"><li><img id="logo_home" src="drawable/home.png" height="30" width="30"></li></a>
+              <li><img id="logo_sujet" src="drawable/sujet.svg" height="30" width="30"></li>
+              <a href="http://localhost:8080/Moo/AddTeamServelt"><li><img id="logo_equipe" src="drawable/equipe.svg" height="30" width="30"></li></a>
+              <a href="http://localhost:8080/Moo/MeetingServlet"><li><img id="logo_rdv" src="drawable/rdv.svg" height="30" width="30"></li></a>
+              <a href="http://localhost:8080/Moo/DocumentServlet"><li><img id="logo_docs" src="drawable/docs.svg" height="30" width="30"></li></a>
             </ul>
           </li>
         </ul>
@@ -112,10 +113,6 @@
    
   </div>
 </div>
-
-</body>
-
-
 <script type="text/javascript">
   jQuery(document).ready(function($){
   $("li.content").hide();
@@ -124,5 +121,5 @@
     });
 });
 </script>
-
+</body>  
 </html>

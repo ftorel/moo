@@ -18,10 +18,12 @@ public class FileTable {
 	
 	
 static public void addFile(String name , String url, String userId){
-		
 	
+	System.out.println( " penis 1"  );
 	
 	java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+	
+	System.out.println( " penis 2 "  );
 	
 		String sqlValues = "('" +
 				name + "','" +
@@ -35,7 +37,8 @@ static public void addFile(String name , String url, String userId){
 						FileTable.creationDate +
 				") VALUES " + sqlValues;
 				
-
+				System.out.println( " sql addFile ====> " + sql );
+				
 				DataBaseConnector.sharedInstance().executeSQL(sql);
 	}
 
