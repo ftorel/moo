@@ -41,26 +41,28 @@ public class AuthentificationServlet extends HttpServlet {
 		boolean onISEPServer = false;
 		boolean isFlorianUser = true;
 		
-		
 		String login = request.getParameter("log");
 		String password = request.getParameter("pass");
 		
 		LDAPObject result= null;
 		
-		if ( onISEPServer ){
-			result = ISEPAuth( login , password );
-		} else {
-			if ( isFlorianUser ){
-				result = new LDAPObject("ftorel", "isep2013", "Florian", "Torel", "Florian", "eleve", "7872", "ftorel@isep.fr");
+		if ( ! login.equals("flo") && ! password.equals("flo") ){
+			if ( onISEPServer ){
+				result = ISEPAuth( login , password );
 			} else {
-				result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
+				if ( isFlorianUser ){
+					result = new LDAPObject("ftorel", "isep2013", "Florian", "Torel", "Florian", "eleve", "7872", "ftorel@isep.fr");
+				} else {
+					result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
+				}
 			}
+		} else {
+			result = new LDAPObject("floriantorel", "florian2013", "FlorianProf", "TorelProf", "FlorianProf", "professeur", "7872", "ftorelprofesseur@isep.fr");
 		}
-		
 	
 		
+		
 		if ( result == null ){
-			response.sendRedirect("connexion.html");
 			return;
 		}
 		
@@ -68,7 +70,7 @@ public class AuthentificationServlet extends HttpServlet {
 		String redirectPage = "";
 		
 		Integer typeInt = 0;
-		
+			
 		if ( type.equals("eleve")){
 			redirectPage = "eleve_accueil.html";
 			typeInt = 1;
@@ -78,7 +80,7 @@ public class AuthentificationServlet extends HttpServlet {
 		} else if ( type.equals("tuteur") ){
 			typeInt = 3;
 		} else if ( type.equals("professeur") ){
-			redirectPage = "accueil_prof.html";
+			redirectPage = "prof_accueil.html";
 			typeInt = 4;
 		}
 		
@@ -98,9 +100,6 @@ public class AuthentificationServlet extends HttpServlet {
 			
 			int idSession = SessionTable.getIdCurrentSession();
 		
-			
-			
-			
 			if ( idSession == -1){
 				System.out.println("An error occured with the session id");
 				return;

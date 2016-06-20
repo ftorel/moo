@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page personnelle</title>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/connexion_accueil.css" rel="stylesheet"/>
+    <http://code.jquery.com/jquery-2.2.3.js>
+</head>
+<body>
+
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6">
+          <!-- <img id="logo_isep" src="Isep-Logo.png" width="160"> -->
+          <img id="logo_isep" src="drawable/Isep-Logo.png">
+        </div>
+
+        <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3 ">
+          <img id="logo_deconnexion" src="drawable/deconnexion.svg">
+        </div>
+
+      </div>
+
+      <div class="row text-center">
+        <div class="col-md-12">
+    		  <h1>Espace personnel Enseignant</h1>
+        </div>
+      </div>
+
+      <div class="row text-center">
+
+        <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-12">
+          <a href="file:///Users/rothavykhin/bootstrap-3.3.6/dist/accueil_eleve.html">
+            <img id="logo_session" src="drawable/sessions.svg" height="80" width="80">
+          </a>
+          <h4>Sessions</h4>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-12">  
+          <img id="logo_sujet" src="drawable/sujet.svg" height="80" width="80">
+          <h4>Sujet</h4>
+        </div>
+        
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <img id="logo_rdv" src="drawable/rdv.svg" height="80" width="80">
+          <h4>RDV</h4>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <img id="logo_docs" src="drawable/docs.svg" height="80" width="80">
+          <h4>Documents</h4>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <img id="logo_equipes" src="drawable/equipe.svg" height="80" width="80">
+          <h4>Mes équipes</h4>
+        </div>
+      </div>
+
+    </div> 
+
+  <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+  <script>
+    $(function() 
+    {
+      $('#logo_session').mousedown(function()
+      {
+        $(this).fadeTo("fast", 0.55);
+      });
+      $('#logo_session').mouseup(function()
+      {
+        $(this).fadeTo("fast", 1);
+        document.location.href="http://localhost:8080/Moo/SessionProfServlet";
+      });
+      
+
+      $('#logo_sujet').mousedown(function()
+      {
+        $(this).fadeTo("fast", 0.55);
+      });
+      $('#logo_sujet').mouseup(function()
+      {
+        $(this).fadeTo("fast", 1);
+        document.location.href="http://localhost:8080/Moo/SujetProfServlet";
+      });
+      
+
+      $('#logo_rdv').mousedown(function()
+      {
+        $(this).fadeTo("fast", 0.55);
+      });
+      $('#logo_rdv').mouseup(function()
+      {
+        $(this).fadeTo("fast", 1);
+        window.open ('prof_rdv.html','_self',false)
+      });
+
+
+      $('#logo_docs').mousedown(function()
+      {
+        $(this).fadeTo("fast", 0.55);
+      });
+      $('#logo_docs').mouseup(function()
+      {
+        $(this).fadeTo("fast", 1);
+        window.open ('prof_documents.html','_self',false)
+      });
+
+
+      $('#logo_equipes').mousedown(function()
+      {
+        $(this).fadeTo("fast", 0.55);
+      });
+      $('#logo_equipes').mouseup(function()
+      {
+        $(this).fadeTo("fast", 1);
+        window.open ('connexion.html','_self',false)
+      });
+
+    });
+  </script>
+
+</body>
+
+
+</html>
