@@ -134,8 +134,14 @@
               <tr>
                 <td><%=i + 1 %></td>
                 <td><%= doc.getName() %></td>
-                <td><i class="fa fa-download fa-1x"> Download </i><br></td>
-                <td><i class="fa fa-remove fa-1x"></i> Remove <br></td>
+                <td><form action='FileDownloader' method ="POST">
+					<input type="submit" name="downloadButton" value="Download" />
+					<input type='hidden' name='docUrl' id='D_URL' value=<%=doc.getUrl()%> />
+				</form></td>
+				<td><form action='FileDelete' method ="POST">
+					<input type='hidden' name='docUrl' id='D_URL' value=<%=doc.getUrl()%> />
+					<input type="submit" name="deleteButton" value="Delete" />
+				</form></td>
                 <td><%= doc.getCreationDate() %></td>
                 <td>Pierre</td>
               </tr>
