@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 
 
@@ -63,6 +64,38 @@ public class DataBaseConnector {
 		catch (SQLException ex) {
 			System.out.println(" error :  " + ex.getMessage() + "\n");
 		    }
+		
+		return null;
+	}
+	
+	public ResultSet executeSQL( String sql , Object[] params ){
+		
+		try{
+			
+		    Connection conn = getDBConnection();
+		    
+		    if ( conn == null ){
+		    	return null;
+		    }
+
+		    java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
+	        
+	        for ( int i = 0 ; i < params.length ; i ++ ){
+	        	stmt.setTimestamp(i + 1, (Timestamp) params[ i ]);
+	        }
+	        
+	        stmt.executeUpdate();
+	       
+	        stmt.close();
+	        conn.close();
+	  
+	    	return null;
+	    	
+			} 
+		catch (SQLException ex) {
+			System.out.println(" error :  " + ex.getMessage() + "\n");
+		    }
+		
 		
 		return null;
 	}

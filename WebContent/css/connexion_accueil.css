@@ -164,7 +164,7 @@ li.toggle:hover span.toggle-menu-bar {
     #cadre_contenu
     {
         padding-top: 0px;
-        font-size: 6pt;
+        font-size: 10pt;
     }
 
     #panel_title, #legende
@@ -177,6 +177,16 @@ li.toggle:hover span.toggle-menu-bar {
     {
         text-align: center;
         display: inline-block;  
+    }
+
+    #description_session
+    {
+        font-size: 10pt;
+    }
+
+    #cadre-session
+    {
+        display: none;
     }
 }
 
@@ -228,7 +238,7 @@ li.toggle:hover span.toggle-menu-bar {
     #cadre_contenu
     {
         padding-top: 5px;
-        font-size: 11pt;
+        font-size: 12pt;
     }
 
     #panel_title, #legende
@@ -246,6 +256,16 @@ li.toggle:hover span.toggle-menu-bar {
     #contenu 
     {
         padding-top: 10pt;
+    }
+
+    #description_session
+    {
+        font-size: 12pt;
+    }
+
+    #cadre-session
+    {
+        display: none;
     }
 }
 
@@ -296,7 +316,7 @@ li.toggle:hover span.toggle-menu-bar {
     #cadre_contenu
     {
         padding-top: 10px;
-        font-size: 12pt;
+        font-size: 13pt;
     }
 
     #panel_title, #legende 
@@ -315,6 +335,16 @@ li.toggle:hover span.toggle-menu-bar {
     #contenu 
     {
         padding-top: 10pt;
+    }
+
+    #description_session
+    {
+        font-size: 13pt;
+    }
+
+    #cadre-session
+    {
+        display: none;
     }
 }
 
@@ -365,7 +395,7 @@ li.toggle:hover span.toggle-menu-bar {
     #cadre_contenu
     {
         padding-top: 50px;
-        font-size: 12pt;
+        font-size: 14pt;
     }
 
     #panel_title, #legende
@@ -384,6 +414,16 @@ li.toggle:hover span.toggle-menu-bar {
     #contenu 
     {
         padding-top: 10pt;
+    }
+
+    #description_session
+    {
+        font-size: 14pt;
+    }
+
+    #cadre-session
+    {
+        display: none;
     }
 
     
