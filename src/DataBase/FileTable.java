@@ -142,7 +142,8 @@ static public ArrayList<Model.Document> FilesForUserId(String userMail){
 					FileTable.tableName + "." + FileTable.id + " , " +
 					FileTable.tableName + "." + FileTable.url + " , " +
 					FileTable.tableName + "." + FileTable.nom + " , " +
-					FileTable.tableName + "." + FileTable.creationDate +
+					FileTable.tableName + "." + FileTable.creationDate + " , " +
+					DroitTable.tableName + "." + DroitTable.droit +
 			" FROM " + DroitTable.tableName + 
 				" JOIN " + FileTable.tableName +
 					" ON " + FileTable.tableName +"."+ FileTable.id + " = " +  DroitTable.tableName + "." + DroitTable.idDocument  + 
@@ -167,7 +168,7 @@ static public ArrayList<Model.Document> FilesForUserId(String userMail){
 				Date creationDate = resultSet.getDate(FileTable.creationDate);
 				
 				Model.Document tempDoc = new Model.Document(id, userMail, name, url,creationDate,uploaderName);
-				
+				tempDoc.droit =  resultSet.getObject(DroitTable.droit).toString();
 				documentList.add(tempDoc);
 			}
 			return documentList;

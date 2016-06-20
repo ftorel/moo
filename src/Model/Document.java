@@ -3,6 +3,8 @@ package Model;
 import java.net.URL;
 import java.sql.Date;
 
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+
 public class Document {
 
 	private String id;
@@ -11,6 +13,8 @@ public class Document {
 	private String url;
 	private Date creationDate;
 	private String uploaderName;
+	
+	public String droit;
 	
 	public Document(String id, String userMail, String name, String url, Date creationDate,String uploaderName) {
 		super();
