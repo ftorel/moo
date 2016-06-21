@@ -5,6 +5,11 @@ public class Feature {
 	private Integer id;
 	private String name;
 	private String description;
+	private Tag tag;
+	
+	public Feature (int id){
+		this.id = id;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -21,6 +26,16 @@ public class Feature {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Tag getTag() {
+		return tag;
+	}
+
+	public void setTag(Tag tag) {
+		this.tag = tag;
+	}
+	
+	
 	
 	
 }

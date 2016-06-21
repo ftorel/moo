@@ -1,8 +1,10 @@
 package DataBase;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import Model.Sujet;
+import Model.Team;
 
 public class ProjetTable {
 
@@ -57,6 +59,69 @@ public class ProjetTable {
 		return sujet;
 		
 	
+	}
+	
+	public static ArrayList<Model.Sujet> assignTeamToSubject( ArrayList<Model.Sujet> sujetList, int session ){
+		
+		/*
+		 SELECT Team.id_team, Team.name 
+		 FROM projet 
+		 JOIN Team 
+		 	ON Team.id_team = projet.team_id_team 
+		 WHERE projet.subject_id_subject = 1 AND projet.session_id_session = 1
+		 */
+		
+		if ( sujetList.isEmpty() ){
+			return null;
+		}
+		
+		for ( Sujet sujet : sujetList ){
+						
+			if ( sujet.getId() == null ){
+				System.out.println( " sujet id is null ");
+				return null;
+			}
+			
+			System.out.println( " params ==>  \n sujetId : " + Integer.toString(sujet.getId()) + " \n " + "session : " + Integer.toString(session) );
+			
+			String sql = 
+					"SELECT " + TeamTable.tableName + "." + TeamTable.name + " , " +
+								TeamTable.tableName + "." + TeamTable.id +
+					" FROM " + ProjetTable.tableName + 
+						" JOIN " + TeamTable.tableName +
+							" ON " + TeamTable.tableName +"."+ TeamTable.id + " = " +  ProjetTable.tableName + "." + ProjetTable.teamId  +
+					" WHERE " + ProjetTable.tableName + "." + ProjetTable.subjectId + " = " + Integer.toString(sujet.getId()) + 
+						" AND " + ProjetTable.tableName + "." + ProjetTable.sessionId + " = " + Integer.toString(session)
+						;
+			
+			System.out.println( " sql assignTeamToSubject ====>  " + sql);
+			
+			ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+			
+			if ( resultSet == null ){
+				System.out.println("The SQL has been executed, the result is null");
+			}else{
+				try {
+					while (resultSet.next()){
+						int teamId = (Integer) resultSet.getObject(TeamTable.id);
+						String name = (String) resultSet.getObject(TeamTable.name);
+						
+						Team team = new Team(teamId);
+						team.setName(name);
+						
+						sujet.addTeam(team);
+						
+					}
+				}
+				catch (Exception e){
+					System.out.println("Exeption during query :" + e);
+				}
+			}
+			
+		}
+		
+		
+		return sujetList;
 	}
 	
 	

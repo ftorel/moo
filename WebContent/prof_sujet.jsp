@@ -198,28 +198,30 @@ Description du sujet:<br>
 	   	</table>
 	
 	
+			<% if ( sujet.getAllTeam() != null) {%>
+	
 	          <table class="table assign">
 	            <thead>
 	              <tr>
-	                <th>Client</th>
-	                <th>équipes assignées</th>
+	                <th>Equipes assignées</th>
 	              </tr>
 	            </thead>
 	            <tbody>
-	              <tr>
-	                <td>Zakia KAZI-AOUL</td>
-	                <td>Vert Bouteille</td>
-	              </tr>
-	              <tr>
-	                <td></td>
-	                <td>Bleu</td>
-	              </tr>
-	              <tr>
-	                <td></td>
-	                <td>Rouge</td>
-	              </tr> 
+	            
+	            	<% for ( int j = 0 ; j < sujet.getAllTeam().size() ; j ++ ) {%>
+	            	
+	            		<%Team team = sujet.getAllTeam().get(j);%>
+		            
+		              <tr>
+		                <td><%= team.getName() %></td>
+		              </tr>
+		              
+	              <%}%>
+	              
 	           </tbody>
           </table>
+          
+          <%}%>
 
 
 		<table class="table fonctions">

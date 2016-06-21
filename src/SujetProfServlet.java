@@ -9,8 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Utils.Constant;
 import DataBase.ParticipationTable;
+import DataBase.ProjetTable;
 import DataBase.SessionTable;
 import DataBase.SujetTable;
 import DataBase.TeamTable;
@@ -40,9 +43,14 @@ public class SujetProfServlet extends HttpServlet {
 		ArrayList<Model.Team> teams = TeamTable.getAllTeamName();
 		ArrayList<Model.Sujet> sujets = SujetTable.getAllSujet();
 		
-		if ( sessions.isEmpty() || teams.isEmpty() ){
+		if ( sessions.isEmpty() || teams.isEmpty() || sujets.isEmpty() ){
 			return;
 		}
+		
+		HttpSession httpSession = request.getSession();
+        Integer sessionId = (Integer) httpSession.getAttribute( Constant.TAG_SESSION_ID );
+		
+		ProjetTable.assignTeamToSubject(sujets, sessionId);
 		
 		request.setAttribute("sessions", sessions);
 		request.setAttribute("teams", teams);

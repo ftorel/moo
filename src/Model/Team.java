@@ -15,12 +15,19 @@ public class Team {
 		this.id = teamId;
 	}
 	
+	public Team(int teamId){
+		this.id = teamId;
+	}
+	
 
 	public String getName() {
 		return name;
 	}
+		
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	
 	public Integer getId() {
 		return id;
 	}

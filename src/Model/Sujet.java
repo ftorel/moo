@@ -1,10 +1,14 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Sujet {
 
 	private Integer id;
 	private String name;
 	private String decription;
+	
+	private ArrayList<Model.Team> teamList = new ArrayList<Model.Team>();
 	
 	public Sujet ( int id ){
 		this.id = id;
@@ -27,4 +31,16 @@ public class Sujet {
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
+	
+	public void addTeam( Team team){
+		teamList.add(team);
+	}
+	
+	public ArrayList<Model.Team> getAllTeam(){
+		if ( teamList.isEmpty() ){
+			System.out.println(" no team assigned to this subject " + this.name);
+		}
+		return teamList;
+	}
+	
 }
