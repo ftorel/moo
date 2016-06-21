@@ -118,7 +118,7 @@ public class UploadServlet extends HttpServlet {
 	                        Integer teamId = (Integer) httpSession.getAttribute( Constant.TAG_TEAM_ID );
 	                        String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
 	                        if(FileTable.addFile(fileName, filePath, userMail,teamId)){
-	                        	  File storeFile = new File(filePath);
+	                        	 File storeFile = new File(filePath);
 	  	                        // saves the file on disk
 	  	                        item.write(storeFile);
 	                        }
@@ -126,7 +126,7 @@ public class UploadServlet extends HttpServlet {
 	                }
 	            }
 	        } catch (Exception ex) {
-	        	System.out.println("error occured uploading file");
+	        	System.out.println("Error uploading files");
 	        	ex.printStackTrace();
 	        }
 	    	this.finished(request,response);
