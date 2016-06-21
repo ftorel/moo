@@ -1,3 +1,8 @@
+<%@ page language="java" import="java.sql.*" import="java.util.*"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="Model.Session" %>
+<%@ page import="Model.Sujet" %>
+<%@ page import="Model.Team" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +16,19 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="js/jquery.js"></script> 
   <script src="js/bootstrap.min.js"></script> 
+
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
 </head> 
 
 <body>
 
   <div class="container-fluid">
+  
+  <%List sessions =(List)request.getAttribute("sessions");%>
+  <%List sujets =(List)request.getAttribute("sujets");%>
+  <%List teams =(List)request.getAttribute("teams");%>
 
     <div class="row">
       <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6">
@@ -43,7 +56,7 @@
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href=""><img id="logo_equipe" src="sujet.svg" height="40" width="40"></a>
+        <a href=""><img id="logo_equipe" src="drawable/sujet.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
@@ -86,7 +99,9 @@
          <ul class="list-group">
           <a href="prof_accueil.html"><li class="list-group-item"><img src="drawable/home.png" height="50" width="50"> ACCUEIL</li></a>
           <a href="prof_session.html"><li class="list-group-item list-group-item-danger"><img src="drawable/sessions.svg" height="50" width="50"> SESSIONS</li></a>
+
           <a href="prof_sujet.html"><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> SUJETS</li></a>
+
           <a href="prof_equipe.html"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50"> ÉQUIPES</li></a>
           <a href="prof_rdv.html"><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"> RDV</li></a>
           <a href=""><li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"><b> DOCUMENTS</b> </li></a>
@@ -98,15 +113,15 @@
       <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="panel panel-danger">
           <div id="panel_title" class="panel-heading">Creer et assigner des Sujets</div>
-           <br/><br/>        
+           <br/><br/>    
+
+    
         <div class="panel-body">
-<form method="post" action="SaveSubject" enctype="multipart/form-data">             
+		<form method="post" action="SaveSubject" enctype="multipart/form-data">             
               <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
 
 <p id="legende" >Titre du Sujet:	
 <input type="text" name="Tsubj"></p><br>
-Client:			
-<input type="text" name="Csubj"><br>
 Description du sujet:<br>
  <input class="description" type="text" name="Dsubj"><br>
 <br>
@@ -116,108 +131,126 @@ Description du sujet:<br>
                 <form role="form" name="form-session" action="" method="post">
                   <div class="form-group text-center">
                     <select class="form-control" id="session_selector">
-                      <option>Session 1</option>
-                      <option>Session 2</option>
-                      <option>Session 3</option>
+                    
+                    <% for ( int i = 0 ; i < sessions.size() ; i ++ ){ %>
+                    	<% Session s = (Session) sessions.get(i); %>
+                    	<option> <%= s.getStartDay() + " - " + s.getEndDay() %></option>
+                    <%}%>
+                    
+                      
                     </select>
                     <br>
                 </form>
+                
+			<p id="legende" >Sélectionner les équipes :</p>
+			<select id="equipes" multiple="multiple">
+					<% for ( int i = 0 ; i < teams.size() ; i ++ ){ %>
+                    	<% Team t = (Team) teams.get(i); %>
+                    	<option values=""> <%= t.getName()  %></option>
+                    <%}%>
+			       
+			    </select>
 
-Equipes assignées :<br>
-     <input type="checkbox" value="Vert Bouteille">Vert Bouteille<br>
-  <input type="checkbox"  value="Rouge" checked>Rouge <br>
-  <input type="checkbox"  value="Bleu" checked>Bleu<br>
-  <input type="checkbox"  value="Jaune" checked>Jaune<br>
-              <br/>
+<br>
+<br>
+
+
               <div class="form-group col-md-12 col-sm-12 col-xs-12 text-center"><input type="submit" class="btn btn-danger" id="save_btn" value="Save"/></div>
             </form>
 <br>
 <br>
 
-        
+      
+
+
         <div class="panel panel-danger">
           <div id="panel_title" class="panel-heading">Récapitulatif du sujet</div>
 
 <p id="legende">Sélectionner un Sujet:</p>
 
+			<% Sujet sujet = null; %>
+
               <form role="form" name="form" action="" method="post">
                 <div class="form-group text-center">
                   <select class="form-control" id="equipe_selector">
-                    <option>Amélioration gestion projet</option>
-                    <option>Application QCM</option>
-                    <option>Systeme de gestion de relation</option>
+                    <% for ( int i = 0 ; i < sujets.size() ; i ++ ){ %>
+                    	<% sujet = (Sujet) sujets.get(i); %>
+                    	<option values=""> <%= sujet.getName()  %></option>
+                    <%}%>
                   </select>
                   <br>
               </form>
+              
+              <% if ( sujet != null) {%>
 
 
-<table class="table description">
-            <thead>
-              <tr>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Lobjectif  de  ce  projet  est  de 
-fournir  une  plateforme  de  gestion  de  ces  entretiens  depuis  la  constitution  des  equipes    jusqua  la 
-restitution des documents exiges par le client en passant par les prises de Rdv.
-			</td>
-              </tr>
-           </tbody>
+			<table class="table description">
+	            <thead>
+	              <tr>
+	                <th>Description</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td> <%= sujet.getDecription() %></td>
+	              </tr>
+	           </tbody>
+	   	</table>
+	
+	
+	          <table class="table assign">
+	            <thead>
+	              <tr>
+	                <th>Client</th>
+	                <th>équipes assignées</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>Zakia KAZI-AOUL</td>
+	                <td>Vert Bouteille</td>
+	              </tr>
+	              <tr>
+	                <td></td>
+	                <td>Bleu</td>
+	              </tr>
+	              <tr>
+	                <td></td>
+	                <td>Rouge</td>
+	              </tr> 
+	           </tbody>
           </table>
 
 
-          <table class="table assign">
-            <thead>
-              <tr>
-                <th>Client</th>
-                <th>équipes assignées</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Zakia KAZI-AOUL</td>
-                <td>Vert Bouteille</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Bleu</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Rouge</td>
-              </tr> 
-           </tbody>
+		<table class="table fonctions">
+	            <thead>
+	              <tr>
+	                <th>Fonctionnalités</th>
+	                <th>Th&egraveme</th>
+				<th>Priorité</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>Downloader un document</td>
+	                <td>Dépot de documents</td>
+	                <td>2</td>
+	              </tr>
+	              <tr>
+	                <td>Se connecter avec identifiants ISEP</td>
+	                <td>Connection</td>
+	                <td>2</td>
+	              </tr>
+	              <tr>
+	                <td>Choisir une equipe</td>
+	                <td>Choix equipe</td>
+	                <td>1</td>
+	              </tr> 
+	           </tbody>
           </table>
-
-
-<table class="table fonctions">
-            <thead>
-              <tr>
-                <th>Fonctionnalités</th>
-                <th>Th&egraveme</th>
-			<th>Priorité</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Downloader un document</td>
-                <td>Dépot de documents</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Se connecter avec identifiants ISEP</td>
-                <td>Connection</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Choisir une equipe</td>
-                <td>Choix equipe</td>
-                <td>1</td>
-              </tr> 
-           </tbody>
-          </table>
+          
+          
+          <%}%>
 
         </div>
         </div>
@@ -229,16 +262,23 @@ restitution des documents exiges par le client en passant par les prises de Rdv.
 
 </body>
 
-<script type="text/javascript">
-  jQuery(document).ready(function($){
-  $("li.content").hide();
-  $("ul.toggle-menu").delegate("li.toggle", "click", function() { 
-  $(this).next().toggle("fast").siblings(".content").hide("fast");
-    });
-});
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $("li.content").hide();
+            $("ul.toggle-menu").delegate("li.toggle", "click", function () {
+                $(this).next().toggle("fast").siblings(".content").hide("fast");
+            });
+        });
 
 
+        $(function () {
+            $('#equipes').multiselect({
+                includeSelectAllOption: false
+            });
+
+        });
 
 </script>
+
 
 </html>
