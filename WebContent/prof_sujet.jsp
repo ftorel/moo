@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.sql.*" import="java.util.*"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="Model.Session" %>
+<%@ page import="Model.Sujet" %>
+<%@ page import="Model.Team" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,10 @@
 <body>
 
   <div class="container-fluid">
+  
+  <%List sessions =(List)request.getAttribute("sessions");%>
+  <%List sujets =(List)request.getAttribute("sujets");%>
+  <%List teams =(List)request.getAttribute("teams");%>
 
     <div class="row">
       <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6">
@@ -109,7 +117,7 @@
 
     
         <div class="panel-body">
-<form method="post" action="SaveSubject" enctype="multipart/form-data">             
+		<form method="post" action="SaveSubject" enctype="multipart/form-data">             
               <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
 
 <p id="legende" >Titre du Sujet:	
@@ -123,19 +131,25 @@ Description du sujet:<br>
                 <form role="form" name="form-session" action="" method="post">
                   <div class="form-group text-center">
                     <select class="form-control" id="session_selector">
-                      <option>Session 1</option>
-                      <option>Session 2</option>
-                      <option>Session 3</option>
+                    
+                    <% for ( int i = 0 ; i < sessions.size() ; i ++ ){ %>
+                    	<% Session s = (Session) sessions.get(i); %>
+                    	<option> <%= s.getStartDay() + " - " + s.getEndDay() %></option>
+                    <%}%>
+                    
+                      
                     </select>
                     <br>
                 </form>
-<p id="legende" >Sélectionner les équipes :</p>
-<select id="equipes" multiple="multiple">
-        <option value="1">Rouge</option>
-        <option value="2">Bleu</option>
-        <option value="3">Vert</option>
-        <option value="4">Jaune</option>
-    </select>
+                
+			<p id="legende" >Sélectionner les équipes :</p>
+			<select id="equipes" multiple="multiple">
+					<% for ( int i = 0 ; i < teams.size() ; i ++ ){ %>
+                    	<% Team t = (Team) teams.get(i); %>
+                    	<option values=""> <%= t.getName()  %></option>
+                    <%}%>
+			       
+			    </select>
 
 <br>
 <br>
@@ -154,84 +168,89 @@ Description du sujet:<br>
 
 <p id="legende">Sélectionner un Sujet:</p>
 
+			<% Sujet sujet = null; %>
+
               <form role="form" name="form" action="" method="post">
                 <div class="form-group text-center">
                   <select class="form-control" id="equipe_selector">
-                    <option>Amélioration gestion projet</option>
-                    <option>Application QCM</option>
-                    <option>Systeme de gestion de relation</option>
+                    <% for ( int i = 0 ; i < sujets.size() ; i ++ ){ %>
+                    	<% sujet = (Sujet) sujets.get(i); %>
+                    	<option values=""> <%= sujet.getName()  %></option>
+                    <%}%>
                   </select>
                   <br>
               </form>
+              
+              <% if ( sujet != null) {%>
 
 
-<table class="table description">
-            <thead>
-              <tr>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Lobjectif  de  ce  projet  est  de 
-fournir  une  plateforme  de  gestion  de  ces  entretiens  depuis  la  constitution  des  equipes    jusqua  la 
-restitution des documents exiges par le client en passant par les prises de Rdv.
-			</td>
-              </tr>
-           </tbody>
+			<table class="table description">
+	            <thead>
+	              <tr>
+	                <th>Description</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td> <%= sujet.getDecription() %></td>
+	              </tr>
+	           </tbody>
+	   	</table>
+	
+	
+	          <table class="table assign">
+	            <thead>
+	              <tr>
+	                <th>Client</th>
+	                <th>équipes assignées</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>Zakia KAZI-AOUL</td>
+	                <td>Vert Bouteille</td>
+	              </tr>
+	              <tr>
+	                <td></td>
+	                <td>Bleu</td>
+	              </tr>
+	              <tr>
+	                <td></td>
+	                <td>Rouge</td>
+	              </tr> 
+	           </tbody>
           </table>
 
 
-          <table class="table assign">
-            <thead>
-              <tr>
-                <th>Client</th>
-                <th>équipes assignées</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Zakia KAZI-AOUL</td>
-                <td>Vert Bouteille</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Bleu</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Rouge</td>
-              </tr> 
-           </tbody>
+		<table class="table fonctions">
+	            <thead>
+	              <tr>
+	                <th>Fonctionnalités</th>
+	                <th>Th&egraveme</th>
+				<th>Priorité</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>Downloader un document</td>
+	                <td>Dépot de documents</td>
+	                <td>2</td>
+	              </tr>
+	              <tr>
+	                <td>Se connecter avec identifiants ISEP</td>
+	                <td>Connection</td>
+	                <td>2</td>
+	              </tr>
+	              <tr>
+	                <td>Choisir une equipe</td>
+	                <td>Choix equipe</td>
+	                <td>1</td>
+	              </tr> 
+	           </tbody>
           </table>
-
-
-<table class="table fonctions">
-            <thead>
-              <tr>
-                <th>Fonctionnalités</th>
-                <th>Th&egraveme</th>
-			<th>Priorité</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Downloader un document</td>
-                <td>Dépot de documents</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Se connecter avec identifiants ISEP</td>
-                <td>Connection</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Choisir une equipe</td>
-                <td>Choix equipe</td>
-                <td>1</td>
-              </tr> 
-           </tbody>
-          </table>
+          
+          
+          <%}%>
 
         </div>
         </div>

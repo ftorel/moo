@@ -48,7 +48,7 @@ public class SujetProfServlet extends HttpServlet {
 		request.setAttribute("teams", teams);
 		request.setAttribute("sujets", sujets);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("prof_sujet.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("prof_sujet.jsp");
 	    if (dispatcher != null){
 	        dispatcher.forward(request, response);
 	    }

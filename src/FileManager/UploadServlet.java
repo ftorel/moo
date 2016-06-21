@@ -126,7 +126,8 @@ public class UploadServlet extends HttpServlet {
 	                }
 	            }
 	        } catch (Exception ex) {
-	        	
+	        	System.out.println("error occured uploading file");
+	        	ex.printStackTrace();
 	        }
 	    	this.finished(request,response);
 	    }
