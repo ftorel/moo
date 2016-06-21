@@ -1,3 +1,4 @@
+<%@ page language="java" import="java.sql.*" import="java.util.*"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,10 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="js/jquery.js"></script> 
   <script src="js/bootstrap.min.js"></script> 
+
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
 </head> 
 
 <body>
@@ -43,7 +48,7 @@
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href=""><img id="logo_equipe" src="sujet.svg" height="40" width="40"></a>
+        <a href=""><img id="logo_equipe" src="drawable/sujet.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
@@ -86,7 +91,9 @@
          <ul class="list-group">
           <a href="prof_accueil.html"><li class="list-group-item"><img src="drawable/home.png" height="50" width="50"> ACCUEIL</li></a>
           <a href="prof_session.html"><li class="list-group-item list-group-item-danger"><img src="drawable/sessions.svg" height="50" width="50"> SESSIONS</li></a>
+
           <a href="prof_sujet.html"><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> SUJETS</li></a>
+
           <a href="prof_equipe.html"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50"> ÉQUIPES</li></a>
           <a href="prof_rdv.html"><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"> RDV</li></a>
           <a href=""><li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"><b> DOCUMENTS</b> </li></a>
@@ -98,15 +105,15 @@
       <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="panel panel-danger">
           <div id="panel_title" class="panel-heading">Creer et assigner des Sujets</div>
-           <br/><br/>        
+           <br/><br/>    
+
+    
         <div class="panel-body">
 <form method="post" action="SaveSubject" enctype="multipart/form-data">             
               <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
 
 <p id="legende" >Titre du Sujet:	
 <input type="text" name="Tsubj"></p><br>
-Client:			
-<input type="text" name="Csubj"><br>
 Description du sujet:<br>
  <input class="description" type="text" name="Dsubj"><br>
 <br>
@@ -122,19 +129,26 @@ Description du sujet:<br>
                     </select>
                     <br>
                 </form>
+<p id="legende" >Sélectionner les équipes :</p>
+<select id="equipes" multiple="multiple">
+        <option value="1">Rouge</option>
+        <option value="2">Bleu</option>
+        <option value="3">Vert</option>
+        <option value="4">Jaune</option>
+    </select>
 
-Equipes assignées :<br>
-     <input type="checkbox" value="Vert Bouteille">Vert Bouteille<br>
-  <input type="checkbox"  value="Rouge" checked>Rouge <br>
-  <input type="checkbox"  value="Bleu" checked>Bleu<br>
-  <input type="checkbox"  value="Jaune" checked>Jaune<br>
-              <br/>
+<br>
+<br>
+
+
               <div class="form-group col-md-12 col-sm-12 col-xs-12 text-center"><input type="submit" class="btn btn-danger" id="save_btn" value="Save"/></div>
             </form>
 <br>
 <br>
 
-        
+      
+
+
         <div class="panel panel-danger">
           <div id="panel_title" class="panel-heading">Récapitulatif du sujet</div>
 
@@ -229,16 +243,23 @@ restitution des documents exiges par le client en passant par les prises de Rdv.
 
 </body>
 
-<script type="text/javascript">
-  jQuery(document).ready(function($){
-  $("li.content").hide();
-  $("ul.toggle-menu").delegate("li.toggle", "click", function() { 
-  $(this).next().toggle("fast").siblings(".content").hide("fast");
-    });
-});
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $("li.content").hide();
+            $("ul.toggle-menu").delegate("li.toggle", "click", function () {
+                $(this).next().toggle("fast").siblings(".content").hide("fast");
+            });
+        });
 
 
+        $(function () {
+            $('#equipes').multiselect({
+                includeSelectAllOption: false
+            });
+
+        });
 
 </script>
+
 
 </html>

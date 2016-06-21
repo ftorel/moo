@@ -184,7 +184,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 10pt;
     }
 
-    #cadre-session
+    #cadre-session, #cadre-teams1, #cadre-teams2, #cadre-team
     {
         display: none;
     }
@@ -263,7 +263,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 12pt;
     }
 
-    #cadre-session
+    #cadre-session, #cadre-teams1, #cadre-teams2, #cadre-team
     {
         display: none;
     }
@@ -342,7 +342,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 13pt;
     }
 
-    #cadre-session
+    #cadre-session, #cadre-teams1, #cadre-teams2, #cadre-team
     {
         display: none;
     }
@@ -421,7 +421,7 @@ li.toggle:hover span.toggle-menu-bar {
         font-size: 14pt;
     }
 
-    #cadre-session
+    #cadre-session, #cadre-teams1, #cadre-teams2, #cadre-team
     {
         display: none;
     }
