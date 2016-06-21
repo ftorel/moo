@@ -51,6 +51,41 @@ public class UserTable {
 		
 	}
 	
+static public String UserNameWithMail(String userMail){
+		
+		String sql = "SELECT " +
+		UserTable.prenom + 
+		" FROM " + 
+		UserTable.tableName + 
+		" WHERE " + 
+		UserTable.mail + 
+		" = '" + userMail + "';";
+		
+		System.out.println(sql);
+		ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
+		if ( resultSet == null ){
+			System.out.println("The SQL has been executed, the result is null");
+		}else{
+			try {
+				if(resultSet.next()){
+					System.out.println("The result of the query is :" + resultSet.getObject(1));
+					return resultSet.getString(1);
+					}else{
+						System.out.println("Any user with this mail.");
+						return null;
+					}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("An error occured !");
+				e.printStackTrace();
+			}
+			return null;
+		} 
+		return null;
+	}
+	
+	
 	static public String UserExistWithMail(String userMail){
 		
 		String sql = "SELECT " +

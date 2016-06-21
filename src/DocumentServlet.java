@@ -9,10 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DataBase.DataBaseConnector;
 import DataBase.FileTable;
 import Model.Document;
+import Utils.Constant;
 
 /**
  * Servlet implementation class DocumentServlet
@@ -35,7 +37,9 @@ public class DocumentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// TODO Change here for the session ID loader
-		ArrayList<Document> datalist = FileTable.FilesForUserId();
+		HttpSession httpSession = request.getSession();
+		String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
+		ArrayList<Document> datalist = FileTable.FilesForUserId(userMail);
 		
 		request.setAttribute("data", datalist);
 

@@ -11,12 +11,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.sun.org.apache.xpath.internal.axes.SelfIteratorNoPredicate;
+
 import DataBase.FileTable;
+import Utils.Constant;
 
 /**
  * Servlet implementation class UploadServlet
@@ -101,26 +105,37 @@ public class UploadServlet extends HttpServlet {
 	           	
 	                    if (!item.isFormField()) {
 	                        String fileName = new File(item.getName()).getName().replaceAll("[^a-zA-Z0-9.-]", "");
+	                        
 	                        String filePath = uploadPath + File.separator + fileName;
 	                        filePath = filePath.replace(" ","_");
-	                        System.out.println("The upload directory is : " + filePath);
-	                        //File storeFile = new File(filePath);
-	 
-	                        // saves the file on disk
-	                        //item.write(storeFile);
 	                        
-	                        FileTable.addFile(fileName, filePath, "7");
+	                        if(fileName.length() == 0){
+	                        	this.finished(request, response);
+	                        	return;
+	                        }
+	                        
+	                        HttpSession httpSession = request.getSession();
+	                        Integer teamId = (Integer) httpSession.getAttribute( Constant.TAG_TEAM_ID );
+	                        String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
+	                        if(FileTable.addFile(fileName, filePath, userMail,teamId)){
+	                        	  File storeFile = new File(filePath);
+	  	                        // saves the file on disk
+	  	                        item.write(storeFile);
+	                        }
 	                    }
 	                }
 	            }
 	        } catch (Exception ex) {
 	        	
 	        }
-	    	RequestDispatcher dispatcher = request.getRequestDispatcher("DocumentServlet");
-	    	
-	    	if (dispatcher != null){
-	    		dispatcher.forward(request, response);
-	    	}
+	    	this.finished(request,response);
 	    }
+	
+	private void finished(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("DocumentServlet");
+		if (dispatcher != null){
+    		dispatcher.forward(request, response);
+    	}
+	}
 
 }

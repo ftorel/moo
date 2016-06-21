@@ -130,16 +130,34 @@
 	for(int i = 0; i < data.size(); i+=1) { %>
 
 	<%Document doc = ((Document)data.get(i)); %>
+	<%Integer droit = Integer.parseInt(doc.droit);
+	System.out.println("Document droit" + droit);%>
         <tbody>
               <tr>
                 <td><%=i + 1 %></td>
                 <td><%= doc.getName() %></td>
-                <td><i class="fa fa-download fa-1x"> Download </i><br></td>
-                <td><i class="fa fa-remove fa-1x"></i> Remove <br></td>
+                <td><form action='FileDownloader' method ="POST">
+                	<%if(droit == 11 || droit == 01){%>            	
+					<input type="submit" name="downloadButton" value="Download" />
+					<input type='hidden' name='docUrl' id='D_URL' value=<%=doc.getUrl()%> />
+                	<%}else{%>
+                	<input type="submit" name="downloadButton" value="Download"  disabled/>
+					<input type='hidden' name='docUrl' id='D_URL' value=<%=doc.getUrl()%> />
+                	<%}%>
+				</form></td>
+				<td><form action='FileDelete' method ="POST">
+				<%if(droit > 10){%>            	
+					<input type='hidden' name='docUrl' id='D_RMV' value=<%=doc.getUrl()%> />
+					<input type="submit" name="deleteButton" value="Delete" />
+                	<%}else{%>
+                	<input type='hidden' name='docUrl' id='D_RMV' value=<%=doc.getUrl()%> />
+					<input type="submit" name="deleteButton" value="Delete" disabled/>
+                	<%}%>
+				</form></td>
                 <td><%= doc.getCreationDate() %></td>
-                <td>Pierre</td>
+                <td><%= doc.getUploaderName() %></td>
               </tr>
-  
+             
  				 <% } %>
 		 </tbody>
 

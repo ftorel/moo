@@ -88,11 +88,13 @@ public class TeamTable {
 	static public ArrayList<String> getMembersMail(Integer teamId){
 		
 		String sql = "Select " + ParticipationTable.userMail  + 
-				"FROM " + 
+				" FROM " + 
 				ParticipationTable.tableName + 
 				" WHERE " + 
 				ParticipationTable.teamId + 
 				" = '" + teamId + "';";
+		
+		System.out.println("getMembersMail SQL ===> " + sql);
 				
 				ResultSet resultSet = DataBaseConnector.sharedInstance().executeSQL(sql);
 				if ( resultSet == null ){
