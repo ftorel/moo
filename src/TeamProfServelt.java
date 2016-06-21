@@ -9,22 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import DataBase.TeamMeetingTable;
-import Utils.Constant;
+import DataBase.SessionTable;
+import DataBase.TeamTable;
+import Model.Session;
 
 /**
- * Servlet implementation class MeetingServlet
+ * Servlet implementation class TeamProfServelt
  */
-@WebServlet("/MeetingServlet")
-public class MeetingServlet extends HttpServlet {
+@WebServlet("/TeamProfServelt")
+public class TeamProfServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MeetingServlet() {
+    public TeamProfServelt() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +35,20 @@ public class MeetingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		HttpSession httpSession = request.getSession();
-		int teamId = (Integer) httpSession.getAttribute( Constant.TAG_TEAM_ID );
+		ArrayList<Model.Session> sessions = SessionTable.getAllSession();
+		
+		// todo get team bySession 
 		
 		
+		request.setAttribute("sessions", sessions);
+		request.getSession().setAttribute("id", sessions.get(0).getId());
 		
-		ArrayList<Model.Meeting> meetings = TeamMeetingTable.getMeetingsByTeamId(teamId);
-		
-		request.setAttribute("meetings", meetings);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("eleve_rdv.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("prof_team.jsp");
 	    if (dispatcher != null){
 	        dispatcher.forward(request, response);
 	    }
-		 
+		
+		
 		
 	}
 
@@ -57,6 +57,21 @@ public class MeetingServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String name = (String) request.getParameter("team_name");
+		Integer id = (Integer)request.getSession().getAttribute("id");
+		
+		
+		System.out.println( " name : " + name );
+		System.out.println( " description : " + Integer.toString(id) );
+		
+		
+		TeamTable.addTeam(id, name);
+		
+		
+		doGet(request,response);
+		
+		
 	}
 
 }

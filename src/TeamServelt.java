@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DataBase.ParticipationTable;
+import DataBase.TeamTable;
 import Model.Team;
 import Utils.Constant;
 
@@ -76,6 +77,8 @@ public class TeamServelt extends HttpServlet {
 		request.setAttribute("data", datalist);
 		request.setAttribute("shouldJoinTeam", String.valueOf(!isUserAlreadyHaveTeam));
 		
+		request.getSession().setAttribute("id", datalist.get(   datalist.size() - 1).getName());
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("eleve_team.jsp");
 	    if (dispatcher != null){
 	        dispatcher.forward(request, response);
@@ -101,7 +104,7 @@ public class TeamServelt extends HttpServlet {
 		}
 		
 		
-		String selectedTeamName = (String) request.getParameter("team");
+		String selectedTeamName = (String)request.getSession().getAttribute("id");
 		
 		if ( selectedTeamName == null || selectedTeamName.isEmpty() ){
 			System.out.println( "error occured name is null ");
@@ -109,6 +112,10 @@ public class TeamServelt extends HttpServlet {
 		} 
 		
 		ParticipationTable.addUserToSpecificTeam(userMail, sId, selectedTeamName);
+		
+		int teamId = TeamTable.getTeamIdByTeamName(selectedTeamName);
+		
+		httpSession.setAttribute(Constant.TAG_TEAM_ID, teamId);
 		
 		doGet(request,response);
 		

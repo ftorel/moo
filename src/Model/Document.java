@@ -1,9 +1,6 @@
 package Model;
 
-import java.net.URL;
 import java.sql.Date;
-
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 public class Document {
 

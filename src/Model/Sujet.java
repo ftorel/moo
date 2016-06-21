@@ -10,6 +10,8 @@ public class Sujet {
 	
 	private ArrayList<Model.Team> teamList = new ArrayList<Model.Team>();
 	
+	private ArrayList<Model.Feature> featureList = new ArrayList<Model.Feature>();
+	
 	public Sujet ( int id ){
 		this.id = id;
 	}
@@ -30,6 +32,17 @@ public class Sujet {
 	}
 	public void setDecription(String decription) {
 		this.decription = decription;
+	}
+	
+	public void addFeature(Feature feature){
+		featureList.add(feature);
+	}
+	
+	public ArrayList<Model.Feature> getAllFeature(){
+		if ( featureList.isEmpty() ){
+			System.out.println(" no feature assigned to this subject " + this.name);
+		}
+		return featureList;
 	}
 	
 	public void addTeam( Team team){

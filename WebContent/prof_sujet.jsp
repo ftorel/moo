@@ -2,6 +2,7 @@
 <%@ page import="Model.Session" %>
 <%@ page import="Model.Sujet" %>
 <%@ page import="Model.Team" %>
+<%@ page import="Model.Feature" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +30,7 @@
   <%List sessions =(List)request.getAttribute("sessions");%>
   <%List sujets =(List)request.getAttribute("sujets");%>
   <%List teams =(List)request.getAttribute("teams");%>
+  <%List features =(List)request.getAttribute("features");%>
 
     <div class="row">
       <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6">
@@ -36,7 +38,7 @@
       </div>
 
       <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-4 ">
-        <img id="logo_deconnexion_pages" src="drawable/deconnexion.svg">
+        <a href="connexion.html"><img id="logo_deconnexion_pages" src="drawable/deconnexion.svg"></a>
       </div>
     </div>
 
@@ -52,7 +54,7 @@
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href="prof_session.html"><img id="logo_equipe" src="drawable/sessions.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/SessionProfServlet"><img id="logo_equipe" src="drawable/sessions.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
@@ -60,15 +62,15 @@
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href="prof_equipe.html"><img id="logo_equipe" src="drawable/equipe.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/TeamProfServelt"><img id="logo_equipe" src="drawable/equipe.svg" height="40" width="40"></a>
       </div>
             
       <div class="col-md-2  col-sm-2 col-xs-2">
-        <a href="prof_rdv.html"><img id="logo_rdv" src="drawable/rdv.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/MeetingProfServlet"><img id="logo_rdv" src="drawable/rdv.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2  col-sm-2 col-xs-2">
-        <a href="prof_documents.html"><img id="logo_docs" src="drawable/docs.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/DocumentServlet"><img id="logo_docs" src="drawable/docs.svg" height="40" width="40"></a>
       </div>            
     </div>
 
@@ -85,11 +87,11 @@
           <li class="content">
             <ul>
               <a href="prof_accueil.html"><li><img src="drawable/home.png" height="30" width="30"></li></a>
-              <a href="prof_session.html"><li><img src="drawable/sessions.svg" height="30" width="30"></li></a> 
-              <a href="prof_sujet.html"><li><img src="drawable/sujet.svg" height="30" width="30"></li></a> 
-              <a href="prof_equipe.html"><li><img src="drawable/equipe.svg" height="30" width="30"></li></a> 
-              <a href="prof_rdv.html"><li><img src="drawable/rdv.svg" height="30" width="30"></li></a>
-              <a href=""><li><img src="drawable/docs.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/SessionProfServlet"><li><img src="drawable/sessions.svg" height="30" width="30"></li></a> 
+              <a href=""><li><img src="drawable/sujet.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/TeamProfServelt"><li><img src="drawable/equipe.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/MeetingProfServlet"><li><img src="drawable/rdv.svg" height="30" width="30"></li></a>
+              <a href="http://localhost:8080/Moo/DocumentServlet"><li><img src="drawable/docs.svg" height="30" width="30"></li></a> 
             </ul>
           </li>
         </ul>
@@ -98,110 +100,137 @@
       <div id="menu_lateral" class="col-sm-3">
          <ul class="list-group">
           <a href="prof_accueil.html"><li class="list-group-item"><img src="drawable/home.png" height="50" width="50"> ACCUEIL</li></a>
-          <a href="prof_session.html"><li class="list-group-item list-group-item-danger"><img src="drawable/sessions.svg" height="50" width="50"> SESSIONS</li></a>
+          <a href="http://localhost:8080/Moo/SessionProfServlet"><li class="list-group-item list-group-item-danger"><img src="drawable/sessions.svg" height="50" width="50"> SESSIONS</li></a>
 
-          <a href="prof_sujet.html"><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> SUJETS</li></a>
+          <a href=""><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> SUJETS</li></a>
 
-          <a href="prof_equipe.html"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50"> ÉQUIPES</li></a>
-          <a href="prof_rdv.html"><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"> RDV</li></a>
-          <a href=""><li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"><b> DOCUMENTS</b> </li></a>
+          <a href="http://localhost:8080/Moo/TeamProfServelt"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50"> ÉQUIPES</li></a>
+          <a href="http://localhost:8080/Moo/MeetingProfServlet"><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"> RDV</li></a>
+          <a href="http://localhost:8080/Moo/DocumentServlet"><li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"><b> DOCUMENTS</b> </li></a>
         </ul>
       </div>
-
-
-
+      
       <div class="col-md-9 col-sm-12 col-xs-12">
-        <div class="panel panel-danger">
-          <div id="panel_title" class="panel-heading">Creer et assigner des Sujets</div>
-           <br/><br/>    
-
-    
+        <div class="panel panel-success">
+          <div id="panel_title" class="panel-heading">Création des sujets</div>
+        <br/>
         <div class="panel-body">
-		<form method="post" action="SaveSubject" enctype="multipart/form-data">             
-              <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
+          <form method="post" action="http://localhost:8080/Moo/SujetProfServlet" enctype="multipart/form-data">             
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
+              <div class="form-group">
+                <label for="subject_title">Entrez un titre pour le sujet:</label>
+                  <input type="text" class="form-control" id="subject_title">
+              </div>
 
-<p id="legende" >Titre du Sujet:	
-<input type="text" name="Tsubj"></p><br>
-Description du sujet:<br>
- <input class="description" type="text" name="Dsubj"><br>
-<br>
+              <div class"form-group">
+                <label for="subject_description">Description du sujet :</label>
+                  <textarea class="form-control" rows="5" id="subject_description"></textarea>
+              </div>
 
-<p id="legende" >Sélectionner une session :</p>
-
+              <br/>
+              
+              <% if ( sessions != null) {%>
+             
+              <div class="form-group">
+              <label for="form-session">Sélectionner une session :</label>
                 <form role="form" name="form-session" action="" method="post">
                   <div class="form-group text-center">
                     <select class="form-control" id="session_selector">
-                    
-                    <% for ( int i = 0 ; i < sessions.size() ; i ++ ){ %>
+                      <% for ( int i = 0 ; i < sessions.size() ; i ++ ){ %>
                     	<% Session s = (Session) sessions.get(i); %>
-                    	<option> <%= s.getStartDay() + " - " + s.getEndDay() %></option>
+                    	<option name="sessions"> <%= s.getStartDay() + " - " + s.getEndDay() %></option>
                     <%}%>
-                    
-                      
                     </select>
-                    <br>
                 </form>
-                
-			<p id="legende" >Sélectionner les équipes :</p>
-			<select id="equipes" multiple="multiple">
-					<% for ( int i = 0 ; i < teams.size() ; i ++ ){ %>
+              </div>
+              
+              <%}%>
+              
+              <% if ( teams != null) {%>
+
+              <div class="form-group">
+              <label for="equipes">Sélectionner les équipes :</label>
+                <select id="features_selector" multiple class="form-control"">
+                  <% for ( int i = 0 ; i < teams.size() ; i ++ ){ %>
                     	<% Team t = (Team) teams.get(i); %>
-                    	<option values=""> <%= t.getName()  %></option>
+                    	<option name="teams"> <%= t.getName()  %></option>
                     <%}%>
-			       
-			    </select>
+                </select>
+              </div>
+              
+              <%}%>
+              
+              
+              <% if ( features != null) {%>
 
-<br>
-<br>
+              <div class="form-group">
+              <label for="form-session">Sélectionner les fonctionnalités :</label>
+                <form role="form" name="form-features" action="" method="post">
+                  <div class="form-group">
+                    <select id="features_selector" multiple class="form-control">
+                      <% for ( int i = 0 ; i < features.size() ; i ++ ){ %>
+                    	<% Feature f = (Feature) features.get(i); %>
+                    	<option name="features"> <%= f.getName()  %></option>
+                    <%}%>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              
+              <%}%>
 
+              <br/>
 
-              <div class="form-group col-md-12 col-sm-12 col-xs-12 text-center"><input type="submit" class="btn btn-danger" id="save_btn" value="Save"/></div>
+              <div class="form-group col-md-12 col-sm-12 col-xs-12 text-center">
+                <input type="submit" class="btn btn-success" id="save_btn" value="Sauvegarder"/>
+              </div>
+
             </form>
-<br>
-<br>
 
+          </div>
+        </div>
+      </div>
       
+      <% Sujet sujet = null; %>
 
-
-        <div class="panel panel-danger">
+              
+        <div class="panel panel-success">
           <div id="panel_title" class="panel-heading">Récapitulatif du sujet</div>
-
-<p id="legende">Sélectionner un Sujet:</p>
-
-			<% Sujet sujet = null; %>
-
-              <form role="form" name="form" action="" method="post">
-                <div class="form-group text-center">
-                  <select class="form-control" id="equipe_selector">
-                    <% for ( int i = 0 ; i < sujets.size() ; i ++ ){ %>
+          <div class="panel-body">
+            <br/>
+            <label for="subject_selector">Sélectionner un sujet:</label>
+                <form role="form" name="form" action="" method="post">
+                  <div class="form-group text-center">
+                    <select class="form-control" id="subject_selector">
+                      <% for ( int i = 0 ; i < sujets.size() ; i ++ ){ %>
                     	<% sujet = (Sujet) sujets.get(i); %>
                     	<option values=""> <%= sujet.getName()  %></option>
-                    <%}%>
-                  </select>
-                  <br>
-              </form>
-              
-              <% if ( sujet != null) {%>
+                    	<%}%>
+                    </select>
+                  </div>
+                </form>
+          </div>
+          
+          <% if ( sujet != null) {%>
 
+          <div class="panel-body text-center">
+            <div id="subject1_description">
+              <div class="panel panel-success">
+                <div class="panel-heading"><h3 class="panel-title">Description du sujet</h3></div>
+                <div class="panel-body"><%= sujet.getDecription() %></div>
+              </div>
+            </div> 
+          </div> 
+          
 
-			<table class="table description">
-	            <thead>
-	              <tr>
-	                <th>Description</th>
-	              </tr>
-	            </thead>
-	            <tbody>
-	              <tr>
-	                <td> <%= sujet.getDecription() %></td>
-	              </tr>
-	           </tbody>
-	   	</table>
+          
+          <% if ( sujet.getAllTeam() != null) {%>
 	
-	
-			<% if ( sujet.getAllTeam() != null) {%>
-	
-	          <table class="table assign">
-	            <thead>
+          
+          <div class="panel-body">
+
+            <table class="table table-striped text-center" id="subject_assignation">
+              <thead>
 	              <tr>
 	                <th>Equipes assignées</th>
 	              </tr>
@@ -219,38 +248,49 @@ Description du sujet:<br>
 	              <%}%>
 	              
 	           </tbody>
-          </table>
+            </table>
+
+          </div>
           
           <%}%>
-
-
-		<table class="table fonctions">
-	            <thead>
-	              <tr>
-	                <th>Fonctionnalités</th>
-	                <th>Th&egraveme</th>
-				<th>Priorité</th>
-	              </tr>
-	            </thead>
-	            <tbody>
-	              <tr>
-	                <td>Downloader un document</td>
-	                <td>Dépot de documents</td>
-	                <td>2</td>
-	              </tr>
-	              <tr>
-	                <td>Se connecter avec identifiants ISEP</td>
-	                <td>Connection</td>
-	                <td>2</td>
-	              </tr>
-	              <tr>
-	                <td>Choisir une equipe</td>
-	                <td>Choix equipe</td>
-	                <td>1</td>
-	              </tr> 
-	           </tbody>
-          </table>
           
+          
+          
+          
+          <% if ( sujet.getAllFeature() != null) {%>
+          
+          <div class="panel-body">
+
+            <table class="table table-striped" id="subject_features">
+              <thead>
+		              <tr>
+		                <th>Name</th>
+		                <th>Description</th>
+						<th>Tag</th>
+		              </tr>
+		            </thead>
+		            <tbody>
+		             
+		             <% for ( int j = 0 ; j < sujet.getAllFeature().size() ; j ++ ) {%>
+	            	
+	            		<%Feature feature = sujet.getAllFeature().get(j);%>
+		            
+		              <tr>
+		                <td><%= feature.getName() %></td>
+		                <td><%= feature.getDescription() %></td>
+		                <td><%= feature.getTag().getName() %></td>
+		              </tr>
+		              
+	              <%}%>
+		             
+		              
+		           </tbody>
+            </table>
+            
+         
+          </div>
+          
+          <%}%>
           
           <%}%>
 

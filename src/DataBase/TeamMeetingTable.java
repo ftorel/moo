@@ -70,7 +70,6 @@ public class TeamMeetingTable {
 			
 			if ( meetings.isEmpty() ){
 				System.out.println(" meetings list is empty");
-				return null;
 			}
 			
 			Collections.sort(meetings);

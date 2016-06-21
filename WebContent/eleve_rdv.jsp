@@ -22,7 +22,7 @@
         <img id="logo_isep_pages" src="drawable/Isep-Logo.png">
       </div>
       <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3 ">
-        <img id="logo_deconnexion_pages" src="drawable/deconnexion.svg">
+        <a href="connexion.html"><img id="logo_deconnexion_pages" src="drawable/deconnexion.svg"></a>
       </div>
     </div>
 

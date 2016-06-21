@@ -38,8 +38,8 @@ public class AuthentificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		boolean onISEPServer = false;
-		boolean isFlorianUser = false;
+		boolean onISEPServer = true;
+		boolean isFlorianUser = true;
 		
 		String login = request.getParameter("log");
 		String password = request.getParameter("pass");

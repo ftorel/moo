@@ -150,7 +150,7 @@
 		    	<%for(int i = 0; i < data.size(); i+=1) { %>
 		    
 		    		<%Team team = ((Team)data.get(i)); %>
-					<option><%=team.getName()%></option>
+					<option name="team"><%=team.getName()%></option>
 		    
 				<% } %> 
 				

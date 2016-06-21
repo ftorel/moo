@@ -14,6 +14,7 @@ public class ParticipationTable {
 	static final public String teamId = "team_id_team";
 	static final public String sessionId = "Session_id_session";
 	
+
 	static public  ArrayList<Model.Team> getTeamWithMembers(){
 		
 		ArrayList<Model.Team> teamList = TeamTable.getAllTeamName();

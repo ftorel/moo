@@ -119,8 +119,10 @@ public class UploadServlet extends HttpServlet {
 	                        String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
 	                        if(FileTable.addFile(fileName, filePath, userMail,teamId)){
 	                        	 File storeFile = new File(filePath);
+	                        	  
 	  	                        // saves the file on disk
-	  	                        item.write(storeFile);
+	                        	 
+	  	                        //item.write(storeFile);
 	                        }
 	                    }
 	                }

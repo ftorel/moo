@@ -28,7 +28,7 @@
       </div>
 
       <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-4 ">
-        <img id="logo_deconnexion_pages" src="drawable/deconnexion.svg">
+        <a href="connexion.html"><img id="logo_deconnexion_pages" src="drawable/deconnexion.svg"></a>
       </div>
     </div>
 

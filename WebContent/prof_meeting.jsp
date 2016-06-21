@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +8,7 @@
 		<meta charset="utf-8">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  		<link href="connexion_accueil.css" rel="stylesheet"/>
+  		<link href="css/connexion_accueil.css" rel="stylesheet"/>
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		  <!-- <link rel="stylesheet" href="css/datepicker.css"> -->
@@ -17,10 +19,10 @@
 
     <div class="row">
       <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6">
-        <img id="logo_isep_pages" src="Isep-Logo.png">
+        <img id="logo_isep_pages" src="drawable/Isep-Logo.png">
       </div>
       <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3 ">
-        <img id="logo_deconnexion_pages" src="deconnexion.svg">
+        <a href="connexion.html"><img id="logo_deconnexion_pages" src="drawable/deconnexion.svg"></a>
       </div>
     </div>
 
@@ -32,27 +34,27 @@
 
     <div id="menu_horizontal" class="row text-center">
       <div class="col-md-2 col-sm-2 col-xs-2">  
-        <a href="prof_accueil.html"><img id="logo_sujet" src="home.png" height="40" width="40"></a>
+        <a href="prof_accueil.html"><img id="logo_sujet" src="drawable/home.png" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href="prof_session.html"><img id="logo_equipe" src="sessions.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/SessionProfServlet"><img id="logo_equipe" src="drawable/sessions.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href="prof_sujet.html"><img id="logo_equipe" src="sujet.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/SujetProfServlet"><img id="logo_equipe" src="drawable/sujet.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2 col-sm-2 col-xs-2">
-        <a href=""><img id="logo_equipe" src="equipe.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/TeamProfServelt"><img id="logo_equipe" src="drawable/equipe.svg" height="40" width="40"></a>
       </div>
             
       <div class="col-md-2  col-sm-2 col-xs-2">
-        <a href="prof_rdv.html"><img id="logo_rdv" src="rdv.svg" height="40" width="40"></a>
+        <a href=""><img id="logo_rdv" src="drawable/rdv.svg" height="40" width="40"></a>
       </div>
 
       <div class="col-md-2  col-sm-2 col-xs-2">
-        <a href="prof_documents.html"><img id="logo_docs" src="docs.svg" height="40" width="40"></a>
+        <a href="http://localhost:8080/Moo/DocumentServlet"><img id="logo_docs" src="drawable/docs.svg" height="40" width="40"></a>
       </div>            
     </div>
 
@@ -68,11 +70,11 @@
           <li class="content">
             <ul>
               <a href="prof_accueil.html"><li><img src="home.png" height="30" width="30"></li></a>
-              <a href="prof_session.html"><li><img src="sessions.svg" height="30" width="30"></li></a> 
-              <a href="prof_sujet.html"><li><img src="sujet.svg" height="30" width="30"></li></a> 
-              <a href="prof_equipe.html"><li><img src="equipe.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/SessionProfServlet"><li><img src="sessions.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/SujetProfServlet"><li><img src="sujet.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/TeamProfServelt"><li><img src="equipe.svg" height="30" width="30"></li></a> 
               <a href=""><li><img src="rdv.svg" height="30" width="30"></li></a>
-              <a href="prof_documents.html"><li><img src="docs.svg" height="30" width="30"></li></a> 
+              <a href="http://localhost:8080/Moo/DocumentServlet"><li><img src="docs.svg" height="30" width="30"></li></a> 
             </ul>
           </li>
         </ul>
@@ -80,12 +82,12 @@
       
       <div id="menu_lateral" class="col-sm-3">
          <ul class="list-group">
-          <a href="prof_accueil.html"><li class="list-group-item"><img src="home.png" height="50" width="50"> ACCUEIL</li></a>
-          <a href="prof_session.html"><li class="list-group-item list-group-item-danger"><img src="sessions.svg" height="50" width="50"> SESSIONS</li></a>
-          <a href="prof_sujet.html"><li class="list-group-item list-group-item-success"><img src="sujet.svg" height="50" width="50"> SUJETS</li></a>
-          <a href="prof_equipe.html"><li class="list-group-item list-group-item-info"><img src="equipe.svg" height="50" width="50"> ÉQUIPES </li></a>
-          <a href=""><li class="list-group-item list-group-item-warning"><img src="rdv.svg" height="50" width="50"><b> RDV</b></li></a>
-          <a href="prof_documents.html"><li class="list-group-item list-group-item-danger"><img src="docs.svg" height="50" width="50"> DOCUMENTS</li></a>
+          <a href="prof_accueil.html"><li class="list-group-item"><img src="drawable/home.png" height="50" width="50"> ACCUEIL</li></a>
+          <a href="http://localhost:8080/Moo/SessionProfServlet"><li class="list-group-item list-group-item-danger"><img src="drawable/sessions.svg" height="50" width="50"> SESSIONS</li></a>
+          <a href="http://localhost:8080/Moo/SujetProfServlet"><li class="list-group-item list-group-item-success"><img src="drawable/sujet.svg" height="50" width="50"> SUJETS</li></a>
+          <a href="http://localhost:8080/Moo/TeamProfServelt"><li class="list-group-item list-group-item-info"><img src="drawable/equipe.svg" height="50" width="50"> ÉQUIPES </li></a>
+          <a href=""><li class="list-group-item list-group-item-warning"><img src="drawable/rdv.svg" height="50" width="50"><b> RDV</b></li></a>
+          <a href="http://localhost:8080/Moo/DocumentServlet"><li class="list-group-item list-group-item-danger"><img src="drawable/docs.svg" height="50" width="50"> DOCUMENTS</li></a>
         </ul>
       </div>
 
