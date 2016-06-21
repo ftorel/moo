@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import DataBase.DataBaseConnector;
 import DataBase.FileTable;
 import Model.Document;
+import Model.Team;
 import Utils.Constant;
 
 /**
@@ -38,6 +40,28 @@ public class DocumentServlet extends HttpServlet {
 
 		// TODO Change here for the session ID loader
 		HttpSession httpSession = request.getSession();
+		
+		
+		
+		Integer type = (Integer) httpSession.getAttribute(Constant.TAG_USER_TYPE);
+		
+		
+		if(type == 4){
+			
+			String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
+			HashMap<Team, ArrayList<Document>> datalist = FileTable.getDocumentByTeams();
+			
+			request.setAttribute("data", datalist);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("prof_document.jsp");
+			
+			if (dispatcher != null){
+				dispatcher.forward(request, response);
+			}
+			
+			return;
+		}
+		
 		String userMail = (String) httpSession.getAttribute( Constant.TAG_MAIL );
 		ArrayList<Document> datalist = FileTable.FilesForUserId(userMail);
 		
