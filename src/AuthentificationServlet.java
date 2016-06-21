@@ -114,6 +114,7 @@ public class AuthentificationServlet extends HttpServlet {
 			httpSession.setAttribute( Constant.TAG_MAIL , userMail);
 			httpSession.setAttribute( Constant.TAG_SESSION_ID , idSession);
 			httpSession.setAttribute( Constant.TAG_TEAM_ID , teamId);
+			httpSession.setAttribute( Constant.TAG_TEAM_ID , teamId);
 			
 			response.sendRedirect(redirectPage);
 		}else{
