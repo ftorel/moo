@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.media.jai.Histogram;
 
@@ -11,7 +12,9 @@ import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TypeHost;
+import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
 
+import Model.Document;
 import Model.Team;
 import sun.security.action.GetBooleanAction;
 
@@ -131,6 +134,27 @@ static public String getDocumentForDate (String  url){
 	return  null;
 }
 
+static public HashMap<Team, ArrayList<Document>> getDocumentByTeams(){
+	
+	ArrayList<Team> teams = TeamTable.getAllTeamName();
+	
+	HashMap<Team, ArrayList<Document>> docMap = new HashMap<Team,ArrayList<Document>>();
+	
+	for (Team team : teams) {
+		//Get the first member
+		String firstMemberMail = TeamTable.getMembersMail(team.getId()).get(0);
+		if(firstMemberMail != null){
+			
+			ArrayList<Document> userDocs = new ArrayList<Document>();
+			userDocs = FilesForUserId(firstMemberMail);
+			if (!userDocs.isEmpty()){
+				docMap.put(team, userDocs);
+			}
+		}
+	}
+	
+	return docMap;
+}
 
 static public ArrayList<Model.Document> FilesForUserId(String userMail){
 	

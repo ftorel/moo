@@ -39,7 +39,7 @@ public class AuthentificationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		boolean onISEPServer = false;
-		boolean isFlorianUser = true;
+		boolean isFlorianUser = false;
 		
 		String login = request.getParameter("log");
 		String password = request.getParameter("pass");
@@ -53,7 +53,7 @@ public class AuthentificationServlet extends HttpServlet {
 				if ( isFlorianUser ){
 					result = new LDAPObject("ftorel", "isep2013", "Florian", "Torel", "Florian", "eleve", "7872", "ftorel@isep.fr");
 				} else {
-					result = new LDAPObject("pp7869", "756NPR", "Pierre", "Perrin", "Pierre", "eleve", "7869", "pierre.perrin@isep.fr");
+					result = new LDAPObject("testetst", "zeerg", "test1", "test2", "test1", "eleve", "7869", "test2@gmail.com");
 				}
 			}
 		} else {
@@ -114,7 +114,7 @@ public class AuthentificationServlet extends HttpServlet {
 			httpSession.setAttribute( Constant.TAG_MAIL , userMail);
 			httpSession.setAttribute( Constant.TAG_SESSION_ID , idSession);
 			httpSession.setAttribute( Constant.TAG_TEAM_ID , teamId);
-			httpSession.setAttribute( Constant.TAG_TEAM_ID , teamId);
+			httpSession.setAttribute( Constant.TAG_USER_TYPE , typeInt);
 			
 			response.sendRedirect(redirectPage);
 		}else{
